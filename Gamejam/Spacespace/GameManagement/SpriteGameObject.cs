@@ -28,9 +28,12 @@ public class SpriteGameObject : GameObject
             return;
         }
         else
+        {
             sprite.Draw(spriteBatch, this.GlobalPosition, origin);
+            //(texture, new Rectangle(400, 50, 100, 100), null, Color.Red, MathHelper.PiOver4, Vector2.Zero, SpriteEffects.None, 0);
+        }
     }
-
+     
     public SpriteSheet Sprite
     {
         get { return sprite; }

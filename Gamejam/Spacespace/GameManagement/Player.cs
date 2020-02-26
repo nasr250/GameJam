@@ -23,7 +23,7 @@ public class Player : AnimatedGameObject
     {
         LoadAnimation("Sprites/player@5x2", "player", true);
         PlayAnimation("player");
-        position = new Vector2(0, 0);
+        position = new Vector2(330, 0);
         bar = new Shotbar("Sprites/BarFilling");
         health = 19;
         powerUpTimer = 0;
@@ -44,34 +44,18 @@ public class Player : AnimatedGameObject
         ShootPosition.Y = position.Y - sprite.Height;
         HandleInput();
         powerUpTimer += gameTime.ElapsedGameTime.TotalSeconds;
-        if (powerUpTimer >= 30)
-        {
-            powerUpTimer = 0;
-            powerUpState = 0;
-        }
-
-        if (position.X < 480)
-        {
-            position.X = 480;
-        }        
-        if (position.X > 1440)
-        {
-            position.X = 1440;
-        }
-        if (position.Y < sprite.Height + 20)
-        {
-            position.Y = sprite.Height + 20;
-        }
-        if(position.Y > 1040)
-        {
-            position.Y = 1040;
-        }
     }
 
     public void HandleInput()
     {
         inputHelper.Update(); //commented lines are for debugging purposes
-        
+        double x = inputHelper.MousePosition.X - GameEnvironment.Screen.X / 2;
+        double y = inputHelper.MousePosition.Y - GameEnvironment.Screen.Y / 2;
+        double z = Math.Atan2(y, x);
+        string test = z.ToString("0.0000");
+        sprite.spriteRotation = float.Parse(test);
+        double d = 2.92571853323781;
+        string result = d.ToString("0.0000");
         if (inputHelper.IsKeyDown(Keys.Up) && position.Y > 0) // move up
         {
             velocity.Y -= speed;
