@@ -13,9 +13,7 @@ class OptionMenuState : GameObjectList
     //protected Player player;
     protected SpriteFont spriteFont;
     protected Button backButton;
-    protected DropDownButton cameraSelectionButton;
     protected ToggleButton colorFilterToggle;
-    protected int selectedCamera;
     protected List<string> cameraNames = new List<string>();
     protected SliderButton Red, Blue, Green, Sensitivity, Volume;
     protected string RedText, BlueText, GreenText, SensitivityText, VolumeText;
@@ -50,21 +48,10 @@ class OptionMenuState : GameObjectList
     public override void Update(GameTime gameTime)
     {
         base.Update(gameTime);
-
-
-
-      
     }
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
         base.Draw(gameTime, spriteBatch);
-
-        spriteBatch.Draw(TrackedColor, new Vector2(900, 230), new Color(Red.Value, Green.Value, Blue.Value));
-        spriteBatch.DrawString(spriteFont, RedText, Red.Position - new Vector2(83, -8), Color.White);
-        spriteBatch.DrawString(spriteFont, BlueText, Blue.Position - new Vector2(85, -8), Color.White);
-        spriteBatch.DrawString(spriteFont, GreenText, Green.Position - new Vector2(100, -8), Color.White);
-        spriteBatch.DrawString(spriteFont, SensitivityText, Sensitivity.Position - new Vector2(130, -8), Color.White);
-        spriteBatch.DrawString(spriteFont, VolumeText, Volume.Position - new Vector2(112, -8), Color.White);
     }
 
     public override void HandleInput(InputHelper inputHelper)

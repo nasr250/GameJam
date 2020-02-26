@@ -71,7 +71,7 @@ public class Player : AnimatedGameObject
     public void HandleInput()
     {
         inputHelper.Update(); //commented lines are for debugging purposes
-        /*
+        
         if (inputHelper.IsKeyDown(Keys.Up) && position.Y > 0) // move up
         {
             velocity.Y -= speed;
@@ -91,7 +91,7 @@ public class Player : AnimatedGameObject
         {
             velocity.X += speed;
         }
-        */
+        
 
         if (inputHelper.KeyPressed(Keys.Z))
         {
