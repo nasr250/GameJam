@@ -20,13 +20,6 @@ partial class Level : GameObjectList
     {
         SpriteGameObject background = new SpriteGameObject("Backgrounds/background", 0, "background"); //source: https://rafaeldejongh.artstation.com/projects/1gX22
         Add(background);
-        SpriteGameObject BgFade = new SpriteGameObject("Backgrounds/overlay", 100, "bgFade");
-        SpriteGameObject BgOverlay = new SpriteGameObject("Backgrounds/Frame", 100, "Frame");
-        BgFade.Position = Vector2.Zero;
-        Add(BgFade);
-        BgOverlay.Sprite.drawColor = Color.Lerp(Color.Black, Color.Transparent, 0.5f);
-        BgOverlay.Position = Vector2.Zero;
-        Add(BgOverlay);
 
         SpriteGameObject chargeBar = new SpriteGameObject("Sprites/BarBorder", 100);
         chargeBar.Position = new Vector2(80, 550);
