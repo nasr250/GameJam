@@ -23,7 +23,7 @@ class OptionMenuState : GameObjectList
     public OptionMenuState()
     {
         spriteFont = GameEnvironment.AssetManager.GetSpriteFont("Sprites/SpelFont");
-        SpriteGameObject background = new SpriteGameObject("Backgrounds/background", 0, "background"); //source: https://rafaeldejongh.artstation.com/projects/1gX22
+        SpriteGameObject background = new SpriteGameObject("Backgrounds/background", 0, "background"); 
         Add(background);
 
         //player = GameWorld.Find("player") as Player;
