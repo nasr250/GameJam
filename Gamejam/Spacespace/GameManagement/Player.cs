@@ -13,7 +13,6 @@ public class Player : AnimatedGameObject
 {
     float speed = 10f;
     InputHelper inputHelper = new InputHelper();
-    Camera camera;
     public int powerUpState { get; private set; }
     public double powerUpTimer { get; private set; }
     GameObjectList friendlyBullets;
@@ -25,7 +24,6 @@ public class Player : AnimatedGameObject
         LoadAnimation("Sprites/player@5x2", "player", true);
         PlayAnimation("player");
         position = new Vector2(0, 0);
-        camera = GameEnvironment.Camera;
         bar = new Shotbar("Sprites/BarFilling");
         health = 19;
         powerUpTimer = 0;
@@ -45,9 +43,6 @@ public class Player : AnimatedGameObject
         ShootPosition.X = position.X;
         ShootPosition.Y = position.Y - sprite.Height;
         HandleInput();
-        Vector2 CameraPosition = camera.TrackObject(GameEnvironment.Screen.X/3*2, GameEnvironment.Screen.Y);
-        Vector2 CameraVelocity = CameraPosition - (Position - new Vector2(GameEnvironment.Screen.X / 4, 0));
-        Position += CameraVelocity/5;
         powerUpTimer += gameTime.ElapsedGameTime.TotalSeconds;
         if (powerUpTimer >= 30)
         {

@@ -16,7 +16,6 @@ public class GameEnvironment : Game
     protected static Random random;
     protected static AssetManager assetManager;
     protected static GameSettingsManager gameSettingsManager;
-    protected static Camera camera;
 
     public GameEnvironment()
     {
@@ -31,10 +30,6 @@ public class GameEnvironment : Game
 
     }
 
-    public static Camera Camera
-    {
-        get { return camera;}
-    }
 
     public static Point Screen
     {
@@ -114,10 +109,6 @@ public class GameEnvironment : Game
     {
         DrawingHelper.Initialize(this.GraphicsDevice);
         spriteBatch = new SpriteBatch(GraphicsDevice);
-        camera = new Camera(graphics.GraphicsDevice);
-        camera.Initialize();
-        camera.Position = new Vector2(10, 10);
-        camera.cameraStatus = Camera.CameraStatus.Tracking;
     }
 
     protected void HandleInput()
@@ -125,7 +116,6 @@ public class GameEnvironment : Game
         inputHelper.Update();
         if (inputHelper.KeyPressed(Keys.Escape))
         {
-            camera.EndVideoFeed();
             Exit();
         }
         if (inputHelper.KeyPressed(Keys.F5))
