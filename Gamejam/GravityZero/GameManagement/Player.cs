@@ -50,21 +50,25 @@ public class Player : AnimatedGameObject
             powerUpState = 0;
         }
 
-        if (position.X < 480)
+        if (position.X > GameEnvironment.Screen.X)
         {
-            position.X = 480;
+            position.X = GameEnvironment.Screen.X;
+            velocity.X = 0;
         }        
-        if (position.X > 1440)
+        if (position.X < 0)
         {
-            position.X = 1440;
+            position.X = 0;
+            velocity.X = 0;
         }
-        if (position.Y < sprite.Height + 20)
+        if (position.Y > GameEnvironment.Screen.Y)
         {
-            position.Y = sprite.Height + 20;
+            position.Y = GameEnvironment.Screen.Y;
+            velocity.Y = 0;
         }
-        if(position.Y > 1040)
+        if (position.Y < sprite.Height) 
         {
-            position.Y = 1040;
+            position.Y = sprite.Height;
+            velocity.Y = 0;
         }
     }
 
