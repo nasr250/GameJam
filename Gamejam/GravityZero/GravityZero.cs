@@ -2,16 +2,16 @@
 using Microsoft.Xna.Framework.Media;
 using System;
 
-class SpaceSpace : GameEnvironment
+class GravityZero : GameEnvironment
 {
     [STAThread]
     static void Main()
     {
-        SpaceSpace game = new SpaceSpace();
+        GravityZero game = new GravityZero();
         game.Run();
     }
 
-    public SpaceSpace()
+    public GravityZero()
     {
         Content.RootDirectory = "Content";
         IsMouseVisible = true;

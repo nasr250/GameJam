@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.852
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spacespace", "Spacespace\Spacespace.csproj", "{F508494E-A7C4-4D59-81F1-572E6F3ACFDE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GravityZero", "GravityZero\GravityZero.csproj", "{F508494E-A7C4-4D59-81F1-572E6F3ACFDE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
