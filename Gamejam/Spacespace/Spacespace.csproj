@@ -69,6 +69,7 @@
     <Compile Include="level\LevelGameLoop.cs" />
     <Compile Include="level\LevelLoading.cs" />
     <Compile Include="menu\Button.cs" />
+    <Compile Include="menu\BuyButton.cs" />
     <Compile Include="menu\ToggleButton.cs" />
     <Compile Include="menu\SliderButton.cs" />
     <Compile Include="menu\DropDownButton.cs" />
@@ -83,6 +84,7 @@
     <Compile Include="states\HelpState.cs" />
     <Compile Include="states\PlayingState.cs" />
     <Compile Include="states\TitleMenuState.cs" />
+    <Compile Include="states\UpgradeMenuState.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 partial class Level : GameObjectList
 {
 
-    protected Button quitButton;
+    protected Button quitButton, upgradeButton;
     public bool Completed;
     public bool GameOver;
     public int Timer;
@@ -45,6 +45,10 @@ partial class Level : GameObjectList
         healthBarName.Position = new Vector2(70, 70);
         Add(healthBarName);
 
+
+        upgradeButton = new Button("Sprites/spr_button_quit", 100);
+        upgradeButton.Position = new Vector2(500, 20);
+        Add(upgradeButton);
 
         quitButton = new Button("Sprites/spr_button_quit", 100);
         quitButton.Position = new Vector2(GameEnvironment.Screen.X - quitButton.Width - 10, 10);

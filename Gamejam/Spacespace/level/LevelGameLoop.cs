@@ -94,6 +94,11 @@ partial class Level : GameObjectList
             GameOver = true;
             GameOverState.Score = score; //gives the game-over screen the score value
         }
+
+        if (upgradeButton.Pressed)
+        {
+            GameEnvironment.GameStateManager.SwitchTo("upgradeMenuState");
+        }
         base.Update(gameTime);
 
     }
