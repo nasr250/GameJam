@@ -29,7 +29,7 @@ class GravityZero : GameEnvironment
         gameStateManager.AddGameState("optionMenuState", new OptionMenuState());
         gameStateManager.SwitchTo("titleMenu");
 
-        AssetManager.PlayMusic("Audio/telepathy"); //source: https://icons8.com/music/genre--synthwave Telepathy - Reminiscor
+        AssetManager.PlayMusic("Audio/played"); //source: temp
         MediaPlayer.Volume = 0.1f;
     }
 }
