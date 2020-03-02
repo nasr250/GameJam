@@ -15,6 +15,7 @@ public class Player : AnimatedGameObject
     InputHelper inputHelper = new InputHelper();
     public int powerUpState { get; private set; }
     public double powerUpTimer { get; private set; }
+    public int mass = 10;
     GameObjectList friendlyBullets;
     Vector2 ShootPosition;
     Shotbar bar;

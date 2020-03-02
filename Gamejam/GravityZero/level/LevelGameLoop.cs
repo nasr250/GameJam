@@ -61,33 +61,6 @@ partial class Level : GameObjectList
 
         levelTime = levelTime.Add(gameTime.ElapsedGameTime);
         Timer += gameTime.ElapsedGameTime.Milliseconds;
-        int objcount = timeIntervals.Count;
-        if (objcount > 10) { objcount = 10; }
-        for(int i = 0; i < objcount; i++) //gives some dummy enemies if the list is empty
-        {
-            if (timeIntervals[i] < Timer)
-            {
-                if (gameObjects[i] is Projectile)
-                {
-                    bullets.Add(gameObjects[i]);
-                }
-                if (gameObjects[i] is Enemy)
-                {
-                    enemies.Add(gameObjects[i]);
-                }
-                Timer -= timeIntervals[i];
-                timeIntervals.RemoveAt(i);
-                gameObjects.RemoveAt(i);
-                objcount--; i--;
-            }
-            else { break; }
-        }
-        if(timeIntervals.Count == 0)
-        {
-            Timer = 0;
-            LoadLevel(0);
-
-        }
         player = GameWorld.Find("player") as Player;
         if (player == null && !GameOver)
         {
