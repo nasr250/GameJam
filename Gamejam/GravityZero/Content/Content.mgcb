@@ -88,18 +88,6 @@
 /processorParam:TextureFormat=Color
 /build:Sprites/BarFilling.png
 
-#begin Sprites/Bullet.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Sprites/Bullet.png
-
 #begin Sprites/enemy1@2x1.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -195,18 +183,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Sprites/LaserInd@1x1.png
-
-#begin Sprites/MovingEnemy.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Sprites/MovingEnemy.png
 
 #begin Sprites/planet@2x1.png
 /importer:TextureImporter
