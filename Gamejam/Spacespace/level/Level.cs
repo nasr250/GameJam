@@ -9,7 +9,7 @@ partial class Level : GameObjectList
     public bool Completed;
     public bool GameOver;
     public int Timer;
-    public int score;
+    public static int score;
     public int levelIndex = 0;
     GameObjectList enemies, friendlyBullets, bullets;
     Player player;
@@ -47,7 +47,7 @@ partial class Level : GameObjectList
 
 
         upgradeButton = new Button("Sprites/spr_button_quit", 100);
-        upgradeButton.Position = new Vector2(500, 20);
+        upgradeButton.Position = new Vector2(1500, 400);
         Add(upgradeButton);
 
         quitButton = new Button("Sprites/spr_button_quit", 100);
