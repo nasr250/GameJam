@@ -7,6 +7,7 @@ public class SpriteGameObject : GameObject
     protected Vector2 origin;
     public bool PerPixelCollisionDetection = true;
     public bool isAlive = true;
+    public Vector2 cameraPos = new Vector2(222, 2);
 
     public SpriteGameObject(string assetName, int layer = 0, string id = "", int sheetIndex = 0)
         : base(layer, id)
@@ -29,7 +30,7 @@ public class SpriteGameObject : GameObject
         }
         else
         {
-            sprite.Draw(spriteBatch, this.GlobalPosition, origin);
+            sprite.Draw(spriteBatch, this.GlobalPosition + cameraPos, origin);
             //(texture, new Rectangle(400, 50, 100, 100), null, Color.Red, MathHelper.PiOver4, Vector2.Zero, SpriteEffects.None, 0);
         }
     }
