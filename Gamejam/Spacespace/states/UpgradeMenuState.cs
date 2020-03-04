@@ -94,22 +94,22 @@ class UpgradeMenustate : GameObjectList
 
 
         //Looks if upgrade prices are the same and makes them hooverable if they are the same.
-        if (price1 == price2)
+        if (price1 == price2 && Level.score >= price1)
         {
             buyButton1.hoover = true;
             buyButton2.hoover = true;
         }
-        else if (price2 == price3)
+        else if (price2 == price3 && Level.score >= price2)
         {
             buyButton2.hoover = true;
             buyButton3.hoover = true;
         }
-        else if (price1 == price3)
+        else if (price1 == price3 && Level.score >= price1)
         {
             buyButton1.hoover = true;
             buyButton3.hoover = true;
         }
-        else if (price1 == price2 || price2 == price3 || price1 == price3)
+        else if (price1 == price2 || price2 == price3 || price1 == price3 && Level.score >= price1)
         {
             buyButton1.hoover = true;
             buyButton2.hoover = true;
@@ -130,7 +130,7 @@ class UpgradeMenustate : GameObjectList
 
         if (buyButton3.Pressed && buyButton3.hoover == true && Level.score >= price3)
         {
-            Level.score -= price3;
+            Level.score  -= price3;
             price3 += price3;
         }
 
