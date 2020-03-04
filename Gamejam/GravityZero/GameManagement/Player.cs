@@ -53,6 +53,7 @@ public class Player : AnimatedGameObject
         double x = inputHelper.MousePosition.X - position.X;
         double y = inputHelper.MousePosition.Y - position.Y;
         double z = Math.Atan2(y, x) + 0.5 * Math.PI;
+
         string test = z.ToString("0.0000");
         sprite.spriteRotation = float.Parse(test);
         if (inputHelper.IsKeyDown(Keys.Up) && position.Y > 0) // move up
@@ -134,7 +135,11 @@ public class Player : AnimatedGameObject
 
     void SingleShot() // Default Shot
     {
-        friendlyBullets.Add(new FriendlyBullet(ShootPosition, 270, 5, 2, 0, (int)bar.size / 1000));
+        double x = inputHelper.MousePosition.X - position.X;
+        double y = inputHelper.MousePosition.Y - position.Y;
+        double z = Math.Atan2(y, x);
+        int dir = (int)(z * (180/ Math.PI));
+        friendlyBullets.Add(new FriendlyBullet(ShootPosition, dir, 5, 2, 0, (int)bar.size / 1000));
     }
 
     void Multishot() // Multi-Shot
