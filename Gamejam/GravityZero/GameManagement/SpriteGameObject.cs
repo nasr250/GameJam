@@ -7,7 +7,7 @@ public class SpriteGameObject : GameObject
     protected Vector2 origin;
     public bool PerPixelCollisionDetection = true;
     public bool isAlive = true;
-    public Vector2 cameraPos = new Vector2(222, 2);
+    public Vector2 cameraPos = new Vector2(0, 0);
 
     public SpriteGameObject(string assetName, int layer = 0, string id = "", int sheetIndex = 0)
         : base(layer, id)

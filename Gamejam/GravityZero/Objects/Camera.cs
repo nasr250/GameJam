@@ -7,8 +7,6 @@ using Microsoft.Xna.Framework;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace GravityZero.Objects
-{
     public class Camera : GameObject
     {
         Vector2 centre;
@@ -26,7 +24,7 @@ namespace GravityZero.Objects
         {
             Player player = GameWorld.Find("player") as Player;
             centre = new Vector2(GameEnvironment.Screen.X / 2 - player.Width / 2, GameEnvironment.Screen.Y / 2 - player.Height / 2);
-            if (player.Position.X > centre.X && player.Position.X < tiles.Columns * tiles.CellWidth - GameEnvironment.Screen.X / 2 - player.Width / 2)
+            if (true)
             {
                 position.X = centre.X - player.Position.X;
             }
@@ -40,4 +38,3 @@ namespace GravityZero.Objects
             position = Vector2.Zero;
         }
     }
-}
