@@ -39,7 +39,7 @@ partial class Level : GameObjectList
         Add(healthBarName);
 
 
-        upgradeButton = new Button("Sprites/spr_button_quit", 100);
+        upgradeButton = new Button("Sprites/spr_upgrade_button", 100);
         upgradeButton.Position = new Vector2(1500, 400);
         Add(upgradeButton);
 

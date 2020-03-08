@@ -15,7 +15,7 @@ class UpgradeMenustate : GameObjectList
         price2 = 150;
         price3 = 100;
 
-        SpriteGameObject upgradeMenu = new SpriteGameObject("UpgradeMenu", 0);
+        SpriteGameObject upgradeMenu = new SpriteGameObject("Backgrounds/UpgradeMenu", 0);
         upgradeMenu.Position = new Vector2(150, 150);
         Add(upgradeMenu);
 
@@ -39,15 +39,15 @@ class UpgradeMenustate : GameObjectList
         itemText3.Position = new Vector2(1600, 700);
         Add(itemText3);
 
-        buyButton1 = new BuyButton("BuyMenu@3", 2);
+        buyButton1 = new BuyButton("Sprites/BuyMenu@3", 2);
         buyButton1.Position = new Vector2(800, 800);
         Add(buyButton1);
 
-        buyButton2 = new BuyButton("BuyMenu@3", 2);
+        buyButton2 = new BuyButton("Sprites/BuyMenu@3", 2);
         buyButton2.Position = new Vector2(1200, 800);
         Add(buyButton2);
 
-        buyButton3 = new BuyButton("BuyMenu@3", 2);
+        buyButton3 = new BuyButton("Sprites/BuyMenu@3", 2);
         buyButton3.Position = new Vector2(1600, 800);
         Add(buyButton3);
     }

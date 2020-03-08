@@ -28,6 +28,7 @@ partial class Level : GameObjectList
             killsText.Text = "Enemies killed: " + killsText.health;
             score = (int)levelTime.TotalMilliseconds + killsText.health * 25000;
         }
+
         scoreText.Text = "Score: " + score; 
         if (player != null) //handles power up message 
         {
