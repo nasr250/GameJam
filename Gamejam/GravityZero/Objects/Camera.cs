@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
-using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Graphics;
 
     public class Camera : GameObject
@@ -23,6 +22,7 @@ using Microsoft.Xna.Framework.Graphics;
         public override void Update(GameTime gameTime)
         {
             Player player = GameWorld.Find("player") as Player;
+            Console.WriteLine("df");
             centre = new Vector2(GameEnvironment.Screen.X / 2 - player.Width / 2, GameEnvironment.Screen.Y / 2 - player.Height / 2);
             if (true)
             {
