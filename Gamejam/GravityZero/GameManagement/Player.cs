@@ -42,7 +42,7 @@ public class Player : AnimatedGameObject
         bar.Update(gameTime);
         bar.health = health;
         ShootPosition.X = position.X;
-        ShootPosition.Y = position.Y - sprite.Height;
+        ShootPosition.Y = position.Y;
         HandleInput();
         powerUpTimer += gameTime.ElapsedGameTime.TotalSeconds;
     }
@@ -55,28 +55,28 @@ public class Player : AnimatedGameObject
         double z = Math.Atan2(y, x) + 0.5 * Math.PI;
         string test = z.ToString("0.0000");
         sprite.spriteRotation = float.Parse(test);
-        if (inputHelper.IsKeyDown(Keys.Up) && position.Y > 0) // move up
+        if (inputHelper.IsKeyDown(Keys.W) && position.Y > 0) // move up
         {
             velocity.Y -= speed;
         }
 
-        if (inputHelper.IsKeyDown(Keys.Down) && position.Y < GameEnvironment.Screen.Y - sprite.Height) // move down
+        if (inputHelper.IsKeyDown(Keys.S) && position.Y < GameEnvironment.Screen.Y - sprite.Height) // move down
         {
             velocity.Y += speed;
         }
 
-        if (inputHelper.IsKeyDown(Keys.Left) && position.X > 0) // move left
+        if (inputHelper.IsKeyDown(Keys.A) && position.X > 0) // move left
         {
             velocity.X -= speed;
         }
 
-        if (inputHelper.IsKeyDown(Keys.Right) && position.X < GameEnvironment.Screen.X - sprite.Width) // move right
+        if (inputHelper.IsKeyDown(Keys.D) && position.X < GameEnvironment.Screen.X - sprite.Width) // move right
         {
             velocity.X += speed;
         }
         
 
-        if (inputHelper.KeyPressed(Keys.Z))
+        if (inputHelper.MouseLeftButtonPressed())
         {
             friendlyBullets = GameWorld.Find("friendlyBullets") as GameObjectList;
             switch (powerUpState) //decides which shot to use based on current powerUp
@@ -134,7 +134,11 @@ public class Player : AnimatedGameObject
 
     void SingleShot() // Default Shot
     {
-        friendlyBullets.Add(new FriendlyBullet(ShootPosition, 270, 5, 2, 0, (int)bar.size / 1000));
+        double x = inputHelper.MousePosition.X - position.X;
+        double y = inputHelper.MousePosition.Y - position.Y;
+        double z = Math.Atan2(y, x);
+        int dir = (int)(z * (180/ Math.PI));
+        friendlyBullets.Add(new FriendlyBullet(ShootPosition, dir, 5, 2, 0, (int)bar.size / 1000));
     }
 
     void Multishot() // Multi-Shot

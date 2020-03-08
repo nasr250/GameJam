@@ -73,6 +73,7 @@
     <Compile Include="menu\ToggleButton.cs" />
     <Compile Include="menu\SliderButton.cs" />
     <Compile Include="menu\DropDownButton.cs" />
+    <Compile Include="Objects\Camera.cs" />
     <Compile Include="Objects\Planet.cs" />
     <Compile Include="Projectile\FriendlyBullet.cs" />
     <Compile Include="Projectile\Bullet.cs" />
