@@ -59,7 +59,7 @@ public class Player : AnimatedGameObject
         inputHelper.Update(); //commented lines are for debugging purposes
         Camera camera = GameWorld.Find("camera") as Camera;
         double x = inputHelper.MousePosition.X - GameEnvironment.Screen.X / 2 + Width / 2;
-        double y = inputHelper.MousePosition.Y - GameEnvironment.Screen.Y / 2 + Width / 2;
+        double y = inputHelper.MousePosition.Y - GameEnvironment.Screen.Y / 2 + Height / 2;
         double z = Math.Atan2(y, x) + 0.5 * Math.PI;
         string tempstring = z.ToString("0.0000");
         sprite.spriteRotation = float.Parse(tempstring);
