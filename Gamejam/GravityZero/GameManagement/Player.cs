@@ -13,7 +13,7 @@ public class Player : AnimatedGameObject
 {
     float speed = 10f;
     InputHelper inputHelper = new InputHelper();
-    public int powerUpState { get; private set; }
+    public static int powerUpState;
     public double powerUpTimer { get; private set; }
     public int mass = 10;
     GameObjectList friendlyBullets;

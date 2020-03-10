@@ -32,11 +32,11 @@ partial class Level : GameObjectList
         scoreText.Text = "Score: " + score; 
         if (player != null) //handles power up message 
         {
-            if (player.powerUpState > 0)
+            if (Player.powerUpState > 0)
             {
                 powerUpState.Visible = true;
                 powerUpTimer.Visible = true;
-                switch (player.powerUpState)
+                switch (Player.powerUpState)
                 {
                     case 1:
                         powerUpState.Text = "Power-Up: MultiShot";

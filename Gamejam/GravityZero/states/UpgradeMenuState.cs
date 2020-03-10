@@ -120,6 +120,7 @@ class UpgradeMenustate : GameObjectList
         if (buyButton1.Pressed && buyButton1.hoover == true && Level.score >= price1) {
             Level.score -= price1;
             price1 += price1;
+            Player.powerUpState += 1;
         }
 
         if (buyButton2.Pressed && buyButton2.hoover == true && Level.score >= price2)
