@@ -34,8 +34,8 @@ public class Shotbar : SpriteGameObject
 
     public void Draw(GameTime gameTime, SpriteBatch spriteBatch, Color color)
     {
-        spriteBatch.Draw(sprite.Sprite, new Vector2(200, 140), new Rectangle(0, 0, (int)size / 38, 90), color); // draw for shotbar.
-        spriteBatch.Draw(sprite.Sprite, new Vector2(200, 30), new Rectangle(0, 0, (int)((health + 1) * 3.7), 90), Color.Red); // draw for healthbar.
+        spriteBatch.Draw(sprite.Sprite, new Vector2(200, 165), new Rectangle(0, 0, (int)size / 38, 50), color); // draw for shotbar.
+        spriteBatch.Draw(sprite.Sprite, new Vector2(200, 45), new Rectangle(0, 0, (int)((health + 1) * 3.7), 50), Color.Red); // draw for healthbar.
     }
     public override void Reset()
     {

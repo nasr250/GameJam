@@ -29,6 +29,7 @@ public class SpriteGameObject : GameObject
         }
         else
         {
+            Vector2 spriteOrigin = new Vector2(Width/2, Height/2);
             Camera camera = GameWorld.Find("camera") as Camera;
             if (camera != null)
             {
@@ -47,7 +48,7 @@ public class SpriteGameObject : GameObject
                 }
                 else
                 {
-                    sprite.Draw(spriteBatch, this.GlobalPosition + camera.Position, origin);
+                    sprite.Draw(spriteBatch, this.GlobalPosition + camera.Position, spriteOrigin);
                 }
             }
             else
