@@ -57,11 +57,12 @@ public class Player : AnimatedGameObject
     public void HandleInput()
     {
         inputHelper.Update(); //commented lines are for debugging purposes
-        double x = inputHelper.MousePosition.X - position.X;
-        double y = inputHelper.MousePosition.Y - position.Y;
+        Camera camera = GameWorld.Find("camera") as Camera;
+        double x = inputHelper.MousePosition.X - GameEnvironment.Screen.X / 2 + Width / 2;
+        double y = inputHelper.MousePosition.Y - GameEnvironment.Screen.Y / 2 + Width / 2;
         double z = Math.Atan2(y, x) + 0.5 * Math.PI;
-        string test = z.ToString("0.0000");
-        sprite.spriteRotation = float.Parse(test);
+        string tempstring = z.ToString("0.0000");
+        sprite.spriteRotation = float.Parse(tempstring);
         if (inputHelper.IsKeyDown(Keys.W) && position.Y > 0) // move up
         {
             velocity.Y -= speed;
