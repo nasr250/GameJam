@@ -1,4 +1,7 @@
-﻿class Button : SpriteGameObject
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+
+class Button : SpriteGameObject
 {
     protected bool pressed;
 
@@ -12,6 +15,12 @@
     {
         pressed = inputHelper.MouseLeftButtonPressed() &&
             BoundingBox.Contains((int)inputHelper.MousePosition.X, (int)inputHelper.MousePosition.Y);
+    }
+
+    public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+    {
+        sprite.Draw(spriteBatch, this.GlobalPosition, origin);
+        base.Update(gameTime);
     }
 
     public override void Reset()

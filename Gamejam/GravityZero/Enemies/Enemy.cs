@@ -38,7 +38,7 @@ public abstract class Enemy : AnimatedGameObject
         {
             if (CollidesWith(player))
             {
-                player.health--;
+                Player.Health--;
                 health--;
             }
             if (position.X < 460 - sprite.Width * 2 || position.X > 1460 + sprite.Width)

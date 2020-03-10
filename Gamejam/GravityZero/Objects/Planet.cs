@@ -26,7 +26,7 @@ public class Planet : AnimatedGameObject
         {
             if (CollidesWith(player))
             {
-                player.health -= 10;
+                Player.Health -= 10;
                 player.Velocity /= 2;
             }
             if (!CollidesWith(player))

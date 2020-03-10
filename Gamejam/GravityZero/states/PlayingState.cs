@@ -54,7 +54,6 @@ class PlayingState : GameObjectList
     {
         base.Update(gameTime);
         CurrentLevel.Update(gameTime);
-
         if (CurrentLevel.GameOver)
         {
             GameEnvironment.GameStateManager.SwitchTo("gameOverState");
@@ -63,6 +62,7 @@ class PlayingState : GameObjectList
         {
             GameEnvironment.GameStateManager.SwitchTo("levelFinishedState");
         }
+
     }
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)

@@ -39,7 +39,7 @@ partial class Level : GameObjectList
 
       //  SpriteGameObject healthBar = new SpriteGameObject("Sprites/BarBorder", 100);
        // healthBar.Position = new Vector2(200, 20);
-      //  Add(healthBar);
+      //  Add(healthBar);C:\Users\Nicki\source\repos\GameJam\Gamejam\GravityZero\level\Level.cs
         TextGameObject healthBarName = new TextGameObject("Sprites/SpelFont", 100);
         healthBarName.Text = "Health";
         healthBarName.Position = new Vector2(70, 70);
@@ -47,7 +47,7 @@ partial class Level : GameObjectList
 
 
         upgradeButton = new Button("Sprites/spr_upgrade_button", 100);
-        upgradeButton.Position = new Vector2(1500, 400);
+        upgradeButton.Position = new Vector2(GameEnvironment.Screen.X - upgradeButton.Width - 10, 50);
         Add(upgradeButton);
 
         quitButton = new Button("Sprites/spr_button_quit", 100);

@@ -6,14 +6,18 @@ class UpgradeMenustate : GameObjectList
     protected Button backButton;
     protected BuyButton buyButton1, buyButton2, buyButton3;
     protected TextGameObject scoreText, itemText1, itemText2, itemText3;
-    protected int price1, price2, price3;
+    protected int price1, price2, price3, itemLevel1, itemLevel2, itemLevel3;
 
     public UpgradeMenustate()
     {
-
+        //item prices
         price1 = 100;
         price2 = 150;
         price3 = 100;
+        //item level
+        itemLevel1 = 1;
+        itemLevel2 = 1;
+        itemLevel3 = 1;
 
         SpriteGameObject upgradeMenu = new SpriteGameObject("Backgrounds/UpgradeMenu", 0);
         upgradeMenu.Position = new Vector2(150, 150);
@@ -60,9 +64,9 @@ class UpgradeMenustate : GameObjectList
     public override void Update(GameTime gameTime) {
         base.Update(gameTime);
         scoreText.Text = "Score " + Level.score;
-        itemText1.Text = "Item1: " + price1;
-        itemText2.Text = "Item2: " + price2;
-        itemText3.Text = "Item3: " + price3;
+        itemText1.Text = "Level " + itemLevel1 + " Gun:" + price1;
+        itemText2.Text = "Level " + itemLevel2 + " Health: " + price2;
+        itemText3.Text = "Level " + itemLevel3 +" Booster: " + price3;
 
         //Hoovers over the buy button and look if it is buyable.
         if (Level.score >= price1)
@@ -118,21 +122,34 @@ class UpgradeMenustate : GameObjectList
 
         //Buying upgrades
         if (buyButton1.Pressed && buyButton1.hoover == true && Level.score >= price1) {
+            Player.isDead = false;
             Level.score -= price1;
             price1 += price1;
+            itemLevel1++;
             Player.powerUpState += 1;
         }
 
         if (buyButton2.Pressed && buyButton2.hoover == true && Level.score >= price2)
         {
+            Player.isDead = false;
             Level.score -= price2;
             price2 += price2;
+            itemLevel2++;
+            Player.Health += 20;
         }
 
         if (buyButton3.Pressed && buyButton3.hoover == true && Level.score >= price3)
         {
+            Player.isDead = false;
             Level.score  -= price3;
             price3 += price3;
+            itemLevel3++;
+            Player.speed += 2f;
+        }
+        //shop reset
+        if (Player.isDead == true)
+        {
+            Reset();
         }
 
         //backbutton
@@ -140,5 +157,14 @@ class UpgradeMenustate : GameObjectList
         {
             GameEnvironment.GameStateManager.SwitchTo("playingState");
         }
+    }
+    public override void Reset()
+    {
+        itemLevel1 = 1;
+        itemLevel2 = 1;
+        itemLevel3 = 1;
+        price1 = 100;
+        price2 = 150;
+        price3 = 100;
     }
 }

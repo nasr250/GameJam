@@ -8,6 +8,10 @@ partial class Level : GameObjectList
     public override void HandleInput(InputHelper inputHelper)
     {
         base.HandleInput(inputHelper);
+        if (inputHelper.KeyPressed(Keys.RightShift)) {
+            score += 300;
+        }
+
         if (inputHelper.KeyPressed(Keys.Back))
         {
             quitButton.Pressed = true;
@@ -21,12 +25,10 @@ partial class Level : GameObjectList
 
     public override void Update(GameTime gameTime)
     {
-
         if (player != null && !GameOver) //handles scoring
         {
             timeText.Text = "Time: " + levelTime.Minutes + ":" + levelTime.Seconds + "." + levelTime.Milliseconds;
             killsText.Text = "Enemies killed: " + killsText.health;
-            score = (int)levelTime.TotalMilliseconds + (int)killsText.health * 25000;
         }
 
         scoreText.Text = "Score: " + score; 
@@ -68,7 +70,6 @@ partial class Level : GameObjectList
             GameOver = true;
             GameOverState.Score = score; //gives the game-over screen the score value
         }
-
         if (upgradeButton.Pressed)
         {
             GameEnvironment.GameStateManager.SwitchTo("upgradeMenuState");
@@ -83,6 +84,7 @@ partial class Level : GameObjectList
         bullets.Reset();
         enemies.Reset();
         Timer = 0;
+        score = 0;
         killsText.health = 0;
         levelTime = new System.TimeSpan();
         if (player != null)

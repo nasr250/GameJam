@@ -10,7 +10,7 @@ public class AnimatedGameObject : SpriteGameObject
     {
         animations = new Dictionary<string, Animation>();
     }
-
+    
     public void LoadAnimation(string assetName, string id, bool looping, 
                               float frameTime = 0.1f)
     {
