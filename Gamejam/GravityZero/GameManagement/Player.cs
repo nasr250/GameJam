@@ -26,7 +26,7 @@ public class Player : AnimatedGameObject
         PlayAnimation("player");
         position = new Vector2(330, 0);
         bar = new Shotbar("Sprites/BarFilling");
-        health = 19;
+        health = 190;
         powerUpTimer = 0;
         powerUpState = 0;
     }
@@ -45,6 +45,13 @@ public class Player : AnimatedGameObject
         ShootPosition.Y = position.Y;
         HandleInput();
         powerUpTimer += gameTime.ElapsedGameTime.TotalSeconds;
+        if (bar.size <= 0)
+        {
+            health -= 0.5f;
+        }
+     
+
+
     }
 
     public void HandleInput()
@@ -97,7 +104,8 @@ public class Player : AnimatedGameObject
                     Beam();
                     break;
             }
-            bar.size = 0;
+            if(bar.size > 0)
+            bar.size -= 500;
         }
 
         if (inputHelper.KeyPressed(Keys.U)) // debug: temp power up switch
@@ -189,7 +197,7 @@ public class Player : AnimatedGameObject
     public override void Reset()
     {
         base.Reset();
-        health = 19;
+        health = 190;
         bar.Reset();
     }
 

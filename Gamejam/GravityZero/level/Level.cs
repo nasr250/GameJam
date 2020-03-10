@@ -18,20 +18,20 @@ partial class Level : GameObjectList
     TimeSpan levelTime;
     public Level(int levelIndex) //this method loads a level, this is the place to put all the code that needs to be shared across all levels
     {
-        SpriteGameObject background = new SpriteGameObject("Backgrounds/background", 0, "background"); //source: https://rafaeldejongh.artstation.com/projects/1gX22
+        SpriteGameObject background = new SpriteGameObject("Backgrounds/background", 0, "background"); 
         Add(background);
 
         SpriteGameObject chargeBar = new SpriteGameObject("Sprites/BarBorder", 100);
-        chargeBar.Position = new Vector2(80, 550);
+        chargeBar.Position = new Vector2(200, 130);
         chargeBar.Sprite.drawColor = Color.Gray;
         Add(chargeBar);
         TextGameObject chargeBarName = new TextGameObject("Sprites/SpelFont", 100);
-        chargeBarName.Text = "Charge Power";
-        chargeBarName.Position = new Vector2(70, 600);
+        chargeBarName.Text = "Fuel";
+        chargeBarName.Position = new Vector2(70, 180);
         Add(chargeBarName);
 
         SpriteGameObject healthBar = new SpriteGameObject("Sprites/BarBorder", 100);
-        healthBar.Position = new Vector2(80, 20);
+        healthBar.Position = new Vector2(200, 20);
         Add(healthBar);
         TextGameObject healthBarName = new TextGameObject("Sprites/SpelFont", 100);
         healthBarName.Text = "Health";
