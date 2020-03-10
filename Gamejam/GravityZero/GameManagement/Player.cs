@@ -26,7 +26,7 @@ public class Player : AnimatedGameObject
         PlayAnimation("player");
         position = new Vector2(330, 0);
         bar = new Shotbar("Sprites/BarFilling");
-        health = 19;
+        health = 190;
         powerUpTimer = 0;
         powerUpState = 0;
     }
@@ -45,16 +45,24 @@ public class Player : AnimatedGameObject
         ShootPosition.Y = position.Y;
         HandleInput();
         powerUpTimer += gameTime.ElapsedGameTime.TotalSeconds;
+        if (bar.size <= 0)
+        {
+            health -= 0.5f;
+        }
+     
+
+
     }
 
     public void HandleInput()
     {
         inputHelper.Update(); //commented lines are for debugging purposes
-        double x = inputHelper.MousePosition.X - position.X;
-        double y = inputHelper.MousePosition.Y - position.Y;
+        Camera camera = GameWorld.Find("camera") as Camera;
+        double x = inputHelper.MousePosition.X - GameEnvironment.Screen.X / 2 + Width / 2;
+        double y = inputHelper.MousePosition.Y - GameEnvironment.Screen.Y / 2 + Height;
         double z = Math.Atan2(y, x) + 0.5 * Math.PI;
-        string test = z.ToString("0.0000");
-        sprite.spriteRotation = float.Parse(test);
+        string tempstring = z.ToString("0.0000");
+        sprite.spriteRotation = float.Parse(tempstring);
         if (inputHelper.IsKeyDown(Keys.W) && position.Y > 0) // move up
         {
             velocity.Y -= speed;
@@ -97,7 +105,8 @@ public class Player : AnimatedGameObject
                     Beam();
                     break;
             }
-            bar.size = 0;
+            if(bar.size > 0)
+            bar.size -= 500;
         }
 
         if (inputHelper.KeyPressed(Keys.U)) // debug: temp power up switch
@@ -189,7 +198,7 @@ public class Player : AnimatedGameObject
     public override void Reset()
     {
         base.Reset();
-        health = 19;
+        health = 190;
         bar.Reset();
     }
 

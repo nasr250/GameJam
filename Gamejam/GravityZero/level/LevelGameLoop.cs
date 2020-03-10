@@ -26,7 +26,7 @@ partial class Level : GameObjectList
         {
             timeText.Text = "Time: " + levelTime.Minutes + ":" + levelTime.Seconds + "." + levelTime.Milliseconds;
             killsText.Text = "Enemies killed: " + killsText.health;
-            score = (int)levelTime.TotalMilliseconds + killsText.health * 25000;
+            score = (int)levelTime.TotalMilliseconds + (int)killsText.health * 25000;
         }
 
         scoreText.Text = "Score: " + score; 
