@@ -10,12 +10,12 @@ public class Planet : AnimatedGameObject
 {
     public const int G = 10000;
     public const int mass = 100;
-    public Planet(string sprite = "Sprites/planet@2x1") : base(id: "planet")
+    public Planet(Vector2 pos, string sprite = "Sprites/planet@2x1") : base(id: "planet")
     {
         LoadAnimation(sprite, "default", true);
         PlayAnimation("default");
-        position = new Vector2(0, 0);
-        health = 2;
+        position = pos;
+        health = 2;        
     }
 
     public override void Update(GameTime gameTime)
