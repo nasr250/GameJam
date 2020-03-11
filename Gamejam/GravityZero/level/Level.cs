@@ -28,18 +28,12 @@ partial class Level : GameObjectList
         stars2.Position = new Vector2(-GameEnvironment.Screen.X / 2, -GameEnvironment.Screen.Y / 2);
         Add(stars2);
 
-        SpriteGameObject chargeBar = new SpriteGameObject("Sprites/BarBorder", 100);
-      //  chargeBar.Position = new Vector2(200, 130);
-      //  chargeBar.Sprite.drawColor = Color.Gray;
-     //   Add(chargeBar);
         TextGameObject chargeBarName = new TextGameObject("Sprites/SpelFont", 100);
         chargeBarName.Text = "Fuel";
         chargeBarName.Position = new Vector2(70, 180);
         Add(chargeBarName);
 
-      //  SpriteGameObject healthBar = new SpriteGameObject("Sprites/BarBorder", 100);
-       // healthBar.Position = new Vector2(200, 20);
-      //  Add(healthBar);
+
         TextGameObject healthBarName = new TextGameObject("Sprites/SpelFont", 100);
         healthBarName.Text = "Health";
         healthBarName.Position = new Vector2(70, 70);

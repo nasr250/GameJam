@@ -24,7 +24,7 @@ public class Player : AnimatedGameObject
     {
         LoadAnimation("Sprites/player@5x2", "player", true);
         PlayAnimation("player");
-        position = new Vector2(330, 0);
+        position = new Vector2(0 , 0);
         bar = new Shotbar("Sprites/BarFilling");
         health = 190;
         powerUpTimer = 0;
@@ -35,6 +35,7 @@ public class Player : AnimatedGameObject
     {
         if (health < 0)
         {
+            LoadAnimation("","",true);
             GameEnvironment.GameStateManager.SwitchTo("GameOverState");
         }
 
@@ -115,6 +116,7 @@ public class Player : AnimatedGameObject
                 powerUpState++;
             else powerUpState = 0;
         }
+
     }
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
