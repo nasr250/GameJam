@@ -18,21 +18,28 @@ partial class Level : GameObjectList
     TimeSpan levelTime;
     public Level(int levelIndex) //this method loads a level, this is the place to put all the code that needs to be shared across all levels
     {
-        SpriteGameObject background = new SpriteGameObject("Backgrounds/background", 0, "background"); //source: https://rafaeldejongh.artstation.com/projects/1gX22
+        SpriteGameObject background = new SpriteGameObject("Backgrounds/background", -10, "background"); //source: https://rafaeldejongh.artstation.com/projects/1gX22
+        background.Position = new Vector2(-GameEnvironment.Screen.X / 2, -GameEnvironment.Screen.Y / 2);
         Add(background);
+        SpriteGameObject stars = new SpriteGameObject("Backgrounds/stars", -9, "stars"); 
+        stars.Position = new Vector2(-GameEnvironment.Screen.X / 2, -GameEnvironment.Screen.Y / 2);
+        Add(stars);
+        SpriteGameObject stars2 = new SpriteGameObject("Backgrounds/stars2", -8, "stars2");
+        stars2.Position = new Vector2(-GameEnvironment.Screen.X / 2, -GameEnvironment.Screen.Y / 2);
+        Add(stars2);
 
         SpriteGameObject chargeBar = new SpriteGameObject("Sprites/BarBorder", 100);
-        chargeBar.Position = new Vector2(80, 550);
-        chargeBar.Sprite.drawColor = Color.Gray;
-        Add(chargeBar);
+      //  chargeBar.Position = new Vector2(200, 130);
+      //  chargeBar.Sprite.drawColor = Color.Gray;
+     //   Add(chargeBar);
         TextGameObject chargeBarName = new TextGameObject("Sprites/SpelFont", 100);
-        chargeBarName.Text = "Charge Power";
-        chargeBarName.Position = new Vector2(70, 600);
+        chargeBarName.Text = "Fuel";
+        chargeBarName.Position = new Vector2(70, 180);
         Add(chargeBarName);
 
-        SpriteGameObject healthBar = new SpriteGameObject("Sprites/BarBorder", 100);
-        healthBar.Position = new Vector2(80, 20);
-        Add(healthBar);
+      //  SpriteGameObject healthBar = new SpriteGameObject("Sprites/BarBorder", 100);
+       // healthBar.Position = new Vector2(200, 20);
+      //  Add(healthBar);
         TextGameObject healthBarName = new TextGameObject("Sprites/SpelFont", 100);
         healthBarName.Text = "Health";
         healthBarName.Position = new Vector2(70, 70);
@@ -71,7 +78,7 @@ partial class Level : GameObjectList
         levelTime = new TimeSpan();
 
         player = new Player(100);
-        player.Position = new Vector2(500, 500);
+        player.Position = new Vector2(GameEnvironment.Screen.X / 2, GameEnvironment.Screen.Y / 2);
         enemies = new GameObjectList(1, "enemies");
         Add(enemies);
         friendlyBullets = new GameObjectList(1, "friendlyBullets");

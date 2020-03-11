@@ -5,7 +5,7 @@ public abstract class GameObject : IGameLoopObject
 {
     protected GameObject parent;
     protected Vector2 position, velocity;
-    public int health;
+    public float health;
     protected int layer;
     protected string id;
     protected bool visible;

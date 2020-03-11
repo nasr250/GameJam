@@ -26,7 +26,7 @@ public class Player : AnimatedGameObject
         PlayAnimation("player");
         position = new Vector2(330, 0);
         bar = new Shotbar("Sprites/BarFilling");
-        health = 19;
+        health = 190;
         powerUpTimer = 0;
         powerUpState = 0;
     }
@@ -42,43 +42,49 @@ public class Player : AnimatedGameObject
         bar.Update(gameTime);
         bar.health = health;
         ShootPosition.X = position.X;
-        ShootPosition.Y = position.Y - sprite.Height;
+        ShootPosition.Y = position.Y;
         HandleInput();
         powerUpTimer += gameTime.ElapsedGameTime.TotalSeconds;
+        if (bar.size <= 0)
+        {
+            health -= 0.5f;
+        }
+     
+
+
     }
 
     public void HandleInput()
     {
         inputHelper.Update(); //commented lines are for debugging purposes
-        double x = inputHelper.MousePosition.X - GameEnvironment.Screen.X / 2;
-        double y = inputHelper.MousePosition.Y - GameEnvironment.Screen.Y / 2;
-        double z = Math.Atan2(y, x);
-        string test = z.ToString("0.0000");
-        sprite.spriteRotation = float.Parse(test);
-        double d = 2.92571853323781;
-        string result = d.ToString("0.0000");
-        if (inputHelper.IsKeyDown(Keys.Up) && position.Y > 0) // move up
+        Camera camera = GameWorld.Find("camera") as Camera;
+        double x = inputHelper.MousePosition.X - GameEnvironment.Screen.X / 2 + Width / 2;
+        double y = inputHelper.MousePosition.Y - GameEnvironment.Screen.Y / 2 + Height;
+        double z = Math.Atan2(y, x) + 0.5 * Math.PI;
+        string tempstring = z.ToString("0.0000");
+        sprite.spriteRotation = float.Parse(tempstring);
+        if (inputHelper.IsKeyDown(Keys.W) && position.Y > 0) // move up
         {
             velocity.Y -= speed;
         }
 
-        if (inputHelper.IsKeyDown(Keys.Down) && position.Y < GameEnvironment.Screen.Y - sprite.Height) // move down
+        if (inputHelper.IsKeyDown(Keys.S) && position.Y < GameEnvironment.Screen.Y - sprite.Height) // move down
         {
             velocity.Y += speed;
         }
 
-        if (inputHelper.IsKeyDown(Keys.Left) && position.X > 0) // move left
+        if (inputHelper.IsKeyDown(Keys.A) && position.X > 0) // move left
         {
             velocity.X -= speed;
         }
 
-        if (inputHelper.IsKeyDown(Keys.Right) && position.X < GameEnvironment.Screen.X - sprite.Width) // move right
+        if (inputHelper.IsKeyDown(Keys.D) && position.X < GameEnvironment.Screen.X - sprite.Width) // move right
         {
             velocity.X += speed;
         }
         
 
-        if (inputHelper.KeyPressed(Keys.Z))
+        if (inputHelper.MouseLeftButtonPressed())
         {
             friendlyBullets = GameWorld.Find("friendlyBullets") as GameObjectList;
             switch (powerUpState) //decides which shot to use based on current powerUp
@@ -99,7 +105,8 @@ public class Player : AnimatedGameObject
                     Beam();
                     break;
             }
-            bar.size = 0;
+            if(bar.size > 0)
+            bar.size -= 500;
         }
 
         if (inputHelper.KeyPressed(Keys.U)) // debug: temp power up switch
@@ -136,7 +143,11 @@ public class Player : AnimatedGameObject
 
     void SingleShot() // Default Shot
     {
-        friendlyBullets.Add(new FriendlyBullet(ShootPosition, 270, 5, 2, 0, (int)bar.size / 1000));
+        double x = inputHelper.MousePosition.X - position.X;
+        double y = inputHelper.MousePosition.Y - position.Y;
+        double z = Math.Atan2(y, x);
+        int dir = (int)(z * (180/ Math.PI));
+        friendlyBullets.Add(new FriendlyBullet(ShootPosition, dir, 5, 2, 0, (int)bar.size / 1000));
     }
 
     void Multishot() // Multi-Shot
@@ -187,7 +198,7 @@ public class Player : AnimatedGameObject
     public override void Reset()
     {
         base.Reset();
-        health = 19;
+        health = 190;
         bar.Reset();
     }
 
