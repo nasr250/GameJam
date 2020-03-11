@@ -19,6 +19,7 @@ public class Player : AnimatedGameObject
     GameObjectList friendlyBullets;
     Vector2 ShootPosition;
     Shotbar bar;
+    public int ironCount, carbonCount;
 
     public Player(int layer = 0, string id = "") : base(layer, id)
     {
@@ -197,6 +198,12 @@ public class Player : AnimatedGameObject
         powerUpState = random.Next(1, 4);
         powerUpTimer = 0;
     }
+
+    public void updateFuel(int fuelChange)
+    {
+        bar.size += fuelChange;
+    }
+
     public override void Reset()
     {
         base.Reset();
