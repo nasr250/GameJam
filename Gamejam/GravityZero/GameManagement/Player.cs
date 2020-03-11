@@ -115,6 +115,7 @@ public class Player : AnimatedGameObject
                 powerUpState++;
             else powerUpState = 0;
         }
+
     }
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
