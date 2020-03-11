@@ -35,6 +35,7 @@ public class Player : AnimatedGameObject
     {
         if (health < 0)
         {
+            LoadAnimation("","",true);
             GameEnvironment.GameStateManager.SwitchTo("GameOverState");
         }
 
