@@ -20,6 +20,9 @@ partial class Level : GameObjectList
         Planet planet2 = new Planet();
         planet2.Position = new Vector2(1200, 1000);
         Add(planet2);
+        Enemy enemy = new MovingEnemy(new Vector2(1000, 1000));
+        enemy.Position = new Vector2(500, 1000);
+        Add(enemy);
     }
 
 

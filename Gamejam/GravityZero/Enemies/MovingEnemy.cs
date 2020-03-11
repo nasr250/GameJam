@@ -20,11 +20,16 @@ public class MovingEnemy : Enemy
 
     public override void Update(GameTime gameTime)
     {
+        Player player = GameWorld.Find("player") as Player;
+        if (player != null)
+        {
+            endPos = player.Position;
+        }
         direction = endPos - position; //calculates the vector the enemy needs to travel
         float distance = direction.Length();
         direction.Normalize(); //calculates the normalized
         movement = speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
-        if (endPos != position)
+        if (distance >= 400)
         {
             movement += 5 * direction; //makes the movement of the enemy more towards the direction between the enemy and the endpoint
             position += movement;
