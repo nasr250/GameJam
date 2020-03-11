@@ -16,7 +16,10 @@ partial class Level : GameObjectList
         Add(planet);
         Planet planet2 = new Planet();
         planet2.Position = new Vector2(1200, 1000);
-        Add(planet2);
+        // Add(planet2);
+        BlackHole bh = new BlackHole();
+        bh.Position = new Vector2(1200, 1000);
+        Add(bh);
     }
 
 

@@ -8,8 +8,8 @@ using Microsoft.Xna.Framework.Graphics;
 
 public class Planet : AnimatedGameObject
 {
-    public const int G = 10000;
-    public const int mass = 100;
+    public const int G = 7500;
+    public int mass = 100;
     public Planet(string sprite = "Sprites/planet@2x1") : base(id: "planet")
     {
         LoadAnimation(sprite, "default", true);
