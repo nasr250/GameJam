@@ -24,7 +24,7 @@ public class Player : AnimatedGameObject
     {
         LoadAnimation("Sprites/player@5x2", "player", true);
         PlayAnimation("player");
-        position = new Vector2(330, 0);
+        position = new Vector2(0 , 0);
         bar = new Shotbar("Sprites/BarFilling");
         health = 190;
         powerUpTimer = 0;
