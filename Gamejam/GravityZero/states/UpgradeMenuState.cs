@@ -20,7 +20,7 @@ class UpgradeMenustate : GameObjectList
         itemLevel3 = 1;
 
         SpriteGameObject upgradeMenu = new SpriteGameObject("Backgrounds/UpgradeMenu", 0);
-        upgradeMenu.Position = new Vector2(150, 150);
+        upgradeMenu.Position = new Vector2(0, 0);
         Add(upgradeMenu);
 
         backButton = new Button("Sprites/spr_button_play", 2);
@@ -32,27 +32,27 @@ class UpgradeMenustate : GameObjectList
         Add(scoreText);
 
         itemText1 = new TextGameObject("Sprites/SpelFont", 1, "itemText1");
-        itemText1.Position = new Vector2(800, 700);
+        itemText1.Position = new Vector2(845, 770);
         Add(itemText1);
 
         itemText2 = new TextGameObject("Sprites/SpelFont", 1, "itemText2");
-        itemText2.Position = new Vector2(1200, 700);
+        itemText2.Position = new Vector2(1225, 770);
         Add(itemText2);
 
         itemText3 = new TextGameObject("Sprites/SpelFont", 1, "itemText3");
-        itemText3.Position = new Vector2(1600, 700);
+        itemText3.Position = new Vector2(1600, 770);
         Add(itemText3);
 
-        buyButton1 = new BuyButton("Sprites/BuyMenu@3", 2);
-        buyButton1.Position = new Vector2(800, 800);
+        buyButton1 = new BuyButton("Sprites/BuyButton@3x1", 2);
+        buyButton1.Position = new Vector2(860, 800);
         Add(buyButton1);
 
-        buyButton2 = new BuyButton("Sprites/BuyMenu@3", 2);
-        buyButton2.Position = new Vector2(1200, 800);
+        buyButton2 = new BuyButton("Sprites/BuyButton@3x1", 2);
+        buyButton2.Position = new Vector2(1250, 800);
         Add(buyButton2);
 
-        buyButton3 = new BuyButton("Sprites/BuyMenu@3", 2);
-        buyButton3.Position = new Vector2(1600, 800);
+        buyButton3 = new BuyButton("Sprites/BuyButton@3x1", 2);
+        buyButton3.Position = new Vector2(1640, 800);
         Add(buyButton3);
     }
 
@@ -64,7 +64,7 @@ class UpgradeMenustate : GameObjectList
     public override void Update(GameTime gameTime) {
         base.Update(gameTime);
         scoreText.Text = "Score " + Level.score;
-        itemText1.Text = "Level " + itemLevel1 + " Gun:" + price1;
+        itemText1.Text = "Level " + itemLevel1 + " Gun: " + price1;
         itemText2.Text = "Level " + itemLevel2 + " Health: " + price2;
         itemText3.Text = "Level " + itemLevel3 +" Booster: " + price3;
 

@@ -51,9 +51,6 @@ public class Player : AnimatedGameObject
         {
             Health -= 0.5f;
         }
-     
-
-
     }
 
     public void HandleInput()

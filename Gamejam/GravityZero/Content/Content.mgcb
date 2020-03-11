@@ -124,7 +124,7 @@
 /processorParam:TextureFormat=Color
 /build:Sprites/BarFilling.png
 
-#begin Sprites/BuyMenu@3.png
+#begin Sprites/BuyButton@3x1.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -134,7 +134,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Sprites/BuyMenu@3.png
+/build:Sprites/BuyButton@3x1.png
 
 #begin Sprites/enemy1@2x1.png
 /importer:TextureImporter
