@@ -5,11 +5,11 @@ using System.Collections.Generic;
 partial class Level : GameObjectList
 {
 
-    protected Button quitButton, upgradeButton;
+    protected Button quitButton;
     public bool Completed;
     public bool GameOver;
     public int Timer;
-    public static int score;
+    public int score;
     public int levelIndex = 0;
     GameObjectList enemies, friendlyBullets, bullets;
     Player player;
@@ -28,27 +28,17 @@ partial class Level : GameObjectList
         stars2.Position = new Vector2(-GameEnvironment.Screen.X / 2, -GameEnvironment.Screen.Y / 2);
         Add(stars2);
 
-        SpriteGameObject chargeBar = new SpriteGameObject("Sprites/BarBorder", 100);
-      //  chargeBar.Position = new Vector2(200, 130);
-      //  chargeBar.Sprite.drawColor = Color.Gray;
-     //   Add(chargeBar);
         TextGameObject chargeBarName = new TextGameObject("Sprites/SpelFont", 100);
         chargeBarName.Text = "Fuel";
         chargeBarName.Position = new Vector2(70, 180);
         Add(chargeBarName);
 
-      //  SpriteGameObject healthBar = new SpriteGameObject("Sprites/BarBorder", 100);
-       // healthBar.Position = new Vector2(200, 20);
-      //  Add(healthBar);C:\Users\Nicki\source\repos\GameJam\Gamejam\GravityZero\level\Level.cs
+
         TextGameObject healthBarName = new TextGameObject("Sprites/SpelFont", 100);
         healthBarName.Text = "Health";
         healthBarName.Position = new Vector2(70, 70);
         Add(healthBarName);
 
-
-        upgradeButton = new Button("Sprites/spr_upgrade_button", 100);
-        upgradeButton.Position = new Vector2(GameEnvironment.Screen.X - upgradeButton.Width - 10, 50);
-        Add(upgradeButton);
 
         quitButton = new Button("Sprites/spr_button_quit", 100);
         quitButton.Position = new Vector2(GameEnvironment.Screen.X - quitButton.Width - 10, 10);

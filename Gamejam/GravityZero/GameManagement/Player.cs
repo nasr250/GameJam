@@ -11,46 +11,49 @@ using Microsoft.Xna.Framework.Graphics;
 
 public class Player : AnimatedGameObject
 {
-    public static float speed = 10f,Health;
+    float speed = 10f;
     InputHelper inputHelper = new InputHelper();
-    public static int powerUpState;
-    public static bool isDead;
+    public int powerUpState { get; private set; }
     public double powerUpTimer { get; private set; }
     public int mass = 10;
     GameObjectList friendlyBullets;
     Vector2 ShootPosition;
     Shotbar bar;
+    public int ironCount, carbonCount;
 
     public Player(int layer = 0, string id = "") : base(layer, id)
     {
         LoadAnimation("Sprites/player@5x2", "player", true);
         PlayAnimation("player");
-        position = new Vector2(330, 0);
+        position = new Vector2(0 , 0);
         bar = new Shotbar("Sprites/BarFilling");
-        Health = 190;
+        health = 190;
         powerUpTimer = 0;
         powerUpState = 0;
-        isDead = false;
     }
 
     public override void Update(GameTime gameTime)
     {
-        if (Health < 0)
+        if (health < 0)
         {
-            isDead = true;
+            LoadAnimation("","",true);
             GameEnvironment.GameStateManager.SwitchTo("GameOverState");
         }
+
         base.Update(gameTime);
         bar.Update(gameTime);
-        bar.health = Health;
+        bar.health = health;
         ShootPosition.X = position.X;
         ShootPosition.Y = position.Y;
         HandleInput();
         powerUpTimer += gameTime.ElapsedGameTime.TotalSeconds;
         if (bar.size <= 0)
         {
-            Health -= 0.5f;
+            health -= 0.5f;
         }
+     
+
+
     }
 
     public void HandleInput()
@@ -114,6 +117,7 @@ public class Player : AnimatedGameObject
                 powerUpState++;
             else powerUpState = 0;
         }
+
     }
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
@@ -194,13 +198,16 @@ public class Player : AnimatedGameObject
         powerUpState = random.Next(1, 4);
         powerUpTimer = 0;
     }
+
+    public void updateFuel(int fuelChange)
+    {
+        bar.size += fuelChange;
+    }
+
     public override void Reset()
     {
         base.Reset();
-        powerUpState = 0;
-        speed = 10f;
-        Position = new Vector2(GameEnvironment.Screen.X / 2, GameEnvironment.Screen.Y / 2);
-        Health = 190;
+        health = 190;
         bar.Reset();
     }
 

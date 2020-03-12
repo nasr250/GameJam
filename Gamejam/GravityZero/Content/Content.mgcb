@@ -73,18 +73,6 @@
 /processorParam:TextureFormat=Color
 /build:Backgrounds/titlebackground.png
 
-#begin Backgrounds/UpgradeMenu.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Backgrounds/UpgradeMenu.png
-
 #begin Levels/0.txt
 /copy:Levels/0.txt
 
@@ -124,7 +112,7 @@
 /processorParam:TextureFormat=Color
 /build:Sprites/BarFilling.png
 
-#begin Sprites/BuyButton@3x1.png
+#begin Sprites/blackhole@1x1.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -134,7 +122,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Sprites/BuyButton@3x1.png
+/build:Sprites/blackhole@1x1.png
 
 #begin Sprites/enemy1@2x1.png
 /importer:TextureImporter
@@ -407,7 +395,7 @@
 /processorParam:TextureFormat=Color
 /build:Sprites/spr_targetrectangle.png
 
-#begin Sprites/spr_upgrade_button.png
+#begin Sprites/scrap@1x1.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -417,5 +405,5 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Sprites/spr_upgrade_button.png
+/build:Sprites/scrap@1x1.png
 
