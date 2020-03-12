@@ -9,9 +9,10 @@ public class Scrap : AnimatedGameObject
     public Scrap()
     {
         Random random = new Random();
-        List<string> materials = new List<string> { "iron", "carbon", "fuel" };
-        scrapType = random.Next(materials.Count);
-        string path = "Sprites/" + materials[scrapType] + "@1x1";
+        //List<string> materials = new List<string> { "iron", "carbon", "fuel" };
+        //scrapType = random.Next(materials.Count);
+        //string path = "Sprites/" + materials[scrapType] + "@1x1";
+        string path = "Sprites/scrap@1x1";
         LoadAnimation(path, "scrap", true);
         PlayAnimation("scrap");
     }
@@ -25,13 +26,19 @@ public class Scrap : AnimatedGameObject
             switch (scrapType)
             {
                 case 1:
-                    player.ironCount += 10;
+                    Player.ironCount += 10;
                     break;
                 case 2:
-                    player.carbonCount += 10;
-                    break;
-                default:
                     player.updateFuel(5000);
+                    break;
+/*                case 2:
+                    Player.carbonCount += 10;
+                    break;*/
+/*                default:
+                    player.updateFuel(5000);
+                    break;*/
+                default:
+                    Player.carbonCount += 10;
                     break;
             }
         }

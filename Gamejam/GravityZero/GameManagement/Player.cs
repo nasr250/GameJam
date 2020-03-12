@@ -11,15 +11,17 @@ using Microsoft.Xna.Framework.Graphics;
 
 public class Player : AnimatedGameObject
 {
-    float speed = 10f;
+    public static float speed = 10f;
     InputHelper inputHelper = new InputHelper();
-    public int powerUpState { get; private set; }
+    public static int powerUpState;
+    public static float Health;
+    public static bool isDead;
     public double powerUpTimer { get; private set; }
     public int mass = 10;
     GameObjectList friendlyBullets;
     Vector2 ShootPosition;
     Shotbar bar;
-    public int ironCount, carbonCount;
+    public static int ironCount, carbonCount;
 
     public Player(int layer = 0, string id = "") : base(layer, id)
     {
@@ -27,29 +29,31 @@ public class Player : AnimatedGameObject
         PlayAnimation("player");
         position = new Vector2(0 , 0);
         bar = new Shotbar("Sprites/BarFilling");
-        health = 190;
+        Health = 190;
         powerUpTimer = 0;
         powerUpState = 0;
+        isDead = false;
     }
 
     public override void Update(GameTime gameTime)
     {
-        if (health < 0)
+        if (Health < 0)
         {
+            isDead = true;
             LoadAnimation("","",true);
             GameEnvironment.GameStateManager.SwitchTo("GameOverState");
         }
 
         base.Update(gameTime);
         bar.Update(gameTime);
-        bar.health = health;
+        bar.health = Health;
         ShootPosition.X = position.X;
         ShootPosition.Y = position.Y;
         HandleInput();
         powerUpTimer += gameTime.ElapsedGameTime.TotalSeconds;
         if (bar.size <= 0)
         {
-            health -= 0.5f;
+            Health -= 0.5f;
         }
      
 
@@ -207,6 +211,7 @@ public class Player : AnimatedGameObject
     public override void Reset()
     {
         base.Reset();
+        isDead = false;
         health = 190;
         bar.Reset();
     }

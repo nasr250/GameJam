@@ -30,7 +30,8 @@ partial class Level : GameObjectList
             timeText.Text = "Time: " + levelTime.Minutes + ":" + levelTime.Seconds + "." + levelTime.Milliseconds;
             killsText.Text = "Enemies killed: " + killsText.health;
         }
-
+        ironText.Text = "Iron: " + Player.ironCount;
+        carbonText.Text = "Carbon : " + Player.carbonCount;
         scoreText.Text = "Score: " + score; 
         if (player != null) //handles power up message 
         {

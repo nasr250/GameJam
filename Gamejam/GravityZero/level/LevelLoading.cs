@@ -7,6 +7,8 @@ partial class Level : GameObjectList
 {
     List<GameObject> gameObjects;
     List<int> timeIntervals;
+    BlackHole bh;
+    Scrap scrap;
 
     public void LoadLevel(int levelIndex)// here all entities used in a level can be loaded
     {
@@ -20,8 +22,13 @@ partial class Level : GameObjectList
         Planet planet2 = new Planet();
         planet2.Position = new Vector2(1200, 1000);
         //Add(planet2);
-        BlackHole bh = new BlackHole();
-        bh.Position = new Vector2(1200, 1000);
+
+        scrap = new Scrap();
+        scrap.Position = new Vector2(100, 100);
+        Add(scrap);
+
+        bh = new BlackHole();
+        bh.Position = new Vector2(4000, 1000);
         Add(bh);
         Enemy enemy = new MovingEnemy(new Vector2(1000, 1000));
         enemy.Position = new Vector2(500, 1000);
