@@ -6,6 +6,9 @@ using System.Threading;
 public class Scrap : AnimatedGameObject
 {
     int scrapType;
+
+    //Tijdelijke aanpassingen om te checken of de upgrademenu werkt met carbon.
+
     public Scrap()
     {
         Random random = new Random();
