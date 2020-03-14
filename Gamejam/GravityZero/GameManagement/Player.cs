@@ -40,7 +40,7 @@ public class Player : AnimatedGameObject
         if (Health < 0)
         {
             isDead = true;
-            LoadAnimation("","",true);
+
             GameEnvironment.GameStateManager.SwitchTo("GameOverState");
         }
 
@@ -211,8 +211,11 @@ public class Player : AnimatedGameObject
     public override void Reset()
     {
         base.Reset();
+        powerUpState = 0;
+        speed = 10f;
+        Position = new Vector2(0, 0);
+        Health = 190;
         isDead = false;
-        health = 190;
         bar.Reset();
     }
 
