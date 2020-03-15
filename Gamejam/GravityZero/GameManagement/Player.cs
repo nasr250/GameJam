@@ -35,6 +35,7 @@ public class Player : AnimatedGameObject
     {
         if (health < 0)
         {
+            LoadAnimation("","",true);
             GameEnvironment.GameStateManager.SwitchTo("GameOverState");
         }
 
@@ -115,6 +116,7 @@ public class Player : AnimatedGameObject
                 powerUpState++;
             else powerUpState = 0;
         }
+
     }
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)

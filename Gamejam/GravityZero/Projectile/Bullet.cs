@@ -13,6 +13,7 @@ class Bullet : Projectile
     protected double curve;
     protected int time;
     Rectangle screen;
+    float despawnTimer = 10f;
 
     public Bullet(Vector2 startpos, int dir = 1, float spd = 1, double curv = 0, int damage = 1)
     {
@@ -22,7 +23,6 @@ class Bullet : Projectile
         curve *= Math.PI / 180;
         velocity.Y = -5;
         health = 1;
-        screen = new Rectangle(460,40,1000,1000);
         LoadAnimation("Sprites/laser@2x2", "default", true);
         PlayAnimation("default");
     }
@@ -30,19 +30,29 @@ class Bullet : Projectile
     public override void Update(GameTime gameTime)
     {
         base.Update(gameTime);
+        timer(gameTime);
         time += gameTime.ElapsedGameTime.Milliseconds;
         sprite.spriteRotation = (float)direction + (float)(Math.PI / 2);
         position.Y += (float)Math.Sin(direction) * speed; position.X += (float)Math.Cos(direction) * speed;
         direction += curve / 100 * speed;
         hitbox.X = (int)position.X; hitbox.Y = (int)position.Y;
         CheckCollision();
-        if(position.X < 460 - sprite.Width * 2 || position.X > 1460 + sprite.Width)
+
+    }
+
+    void timer(GameTime gameTime)
+    {
+        if (despawnTimer > 0f)
         {
-            health = -1;
+            despawnTimer -= (float)gameTime.ElapsedGameTime.TotalSeconds;
+            if (despawnTimer <= 0.0f)
+            {
+                health = -1;
+            }
         }
-        if (position.Y < 40 - sprite.Height * 2 || position.Y > 1040 + sprite.Height)
+        else
         {
-            health = -1;
+            despawnTimer = 10f;
         }
     }
 
