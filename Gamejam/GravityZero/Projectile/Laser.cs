@@ -63,7 +63,7 @@ class Laser : Projectile
             {
                 if (CollidesWith(player.BoundingBox) && hitcd > 500)
                 {
-                    player.health--;
+                    Player.Health--;
                     hitcd = 0;
                 }
             }

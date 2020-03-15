@@ -5,7 +5,7 @@ using System.Collections.Generic;
 partial class Level : GameObjectList
 {
 
-    protected Button quitButton;
+    protected Button quitButton, upgradeButton;
     public bool Completed;
     public bool GameOver;
     public int Timer;
@@ -14,7 +14,7 @@ partial class Level : GameObjectList
     GameObjectList enemies, friendlyBullets, bullets;
     Player player;
     Rectangle Screenbox = new Rectangle(0, 0, GameEnvironment.Screen.X, GameEnvironment.Screen.Y);
-    TextGameObject timeText, killsText, scoreText, powerUpState, powerUpTimer;
+    TextGameObject timeText, killsText, scoreText, powerUpState, powerUpTimer, ironText, carbonText;
     TimeSpan levelTime;
     public Level(int levelIndex) //this method loads a level, this is the place to put all the code that needs to be shared across all levels
     {
@@ -33,7 +33,6 @@ partial class Level : GameObjectList
         chargeBarName.Position = new Vector2(70, 180);
         Add(chargeBarName);
 
-
         TextGameObject healthBarName = new TextGameObject("Sprites/SpelFont", 100);
         healthBarName.Text = "Health";
         healthBarName.Position = new Vector2(70, 70);
@@ -43,6 +42,10 @@ partial class Level : GameObjectList
         quitButton = new Button("Sprites/spr_button_quit", 100);
         quitButton.Position = new Vector2(GameEnvironment.Screen.X - quitButton.Width - 10, 10);
         Add(quitButton);
+
+        upgradeButton = new Button("Sprites/spr_upgrade_button", 100);
+        upgradeButton.Position = new Vector2(GameEnvironment.Screen.X - upgradeButton.Width - 10, 300);
+        Add(upgradeButton);
 
         timeText = new TextGameObject("Sprites/SpelFont", 100);
         timeText.Text = "Time: 0:0";
@@ -54,6 +57,14 @@ partial class Level : GameObjectList
         killsText.health = 0;
         killsText.Text = "Enemies killed: " + killsText.health;
         Add(killsText);
+
+        ironText = new TextGameObject("Sprites/SpelFont", 100, "ironText");
+        ironText.Position = new Vector2(1500, 240);
+        Add(ironText);
+
+        carbonText = new TextGameObject("Sprites/SpelFont", 100, "carbonText");
+        carbonText.Position = new Vector2(1500, 340);
+        Add(carbonText);
 
         scoreText = new TextGameObject("Sprites/SpelFont", 100, "scoreText");
         scoreText.Position = new Vector2(1500, 140);

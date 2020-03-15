@@ -11,14 +11,17 @@ using Microsoft.Xna.Framework.Graphics;
 
 public class Player : AnimatedGameObject
 {
-    float speed = 10f;
+    public static float speed = 10f;
     InputHelper inputHelper = new InputHelper();
-    public int powerUpState { get; private set; }
+    public static int powerUpState;
+    public static float Health;
+    public static bool isDead;
     public double powerUpTimer { get; private set; }
     public int mass = 10;
     GameObjectList friendlyBullets;
     Vector2 ShootPosition;
     Shotbar bar;
+    public static int ironCount, carbonCount;
 
     public Player(int layer = 0, string id = "") : base(layer, id)
     {
@@ -26,31 +29,33 @@ public class Player : AnimatedGameObject
         PlayAnimation("player");
         position = new Vector2(0, 0);
         bar = new Shotbar("Sprites/BarFilling");
-        health = 190;
+        Health = 190;
         powerUpTimer = 0;
         powerUpState = 0;
+        isDead = false;
     }
 
     public override void Update(GameTime gameTime)
     {
-        if (health < 0)
+        if (Health < 0)
         {
-            LoadAnimation("","",true);
+            isDead = true;
+
             GameEnvironment.GameStateManager.SwitchTo("GameOverState");
         }
 
         base.Update(gameTime);
         bar.Update(gameTime);
-        bar.health = health;
+        bar.health = Health;
         ShootPosition.X = position.X;
         ShootPosition.Y = position.Y;
         HandleInput();
         powerUpTimer += gameTime.ElapsedGameTime.TotalSeconds;
         if (bar.size <= 0)
         {
-            health -= 0.5f;
+            Health -= 0.5f;
         }
-     
+
 
 
     }
@@ -64,26 +69,11 @@ public class Player : AnimatedGameObject
         double z = Math.Atan2(y, x) + 0.5 * Math.PI;
         string tempstring = z.ToString("0.0000");
         sprite.spriteRotation = float.Parse(tempstring);
-        if (inputHelper.IsKeyDown(Keys.W) && position.Y > 0) // move up
+    
+        if (inputHelper.IsKeyDown(Keys.Space))
         {
-            velocity.Y -= speed;
+            velocity = new Vector2((Velocity.X + (float)x) / 1.5f, (Velocity.Y + (float)y) / 1.5f);
         }
-
-        if (inputHelper.IsKeyDown(Keys.S) && position.Y < GameEnvironment.Screen.Y - sprite.Height) // move down
-        {
-            velocity.Y += speed;
-        }
-
-        if (inputHelper.IsKeyDown(Keys.A) && position.X > 0) // move left
-        {
-            velocity.X -= speed;
-        }
-
-        if (inputHelper.IsKeyDown(Keys.D) && position.X < GameEnvironment.Screen.X - sprite.Width) // move right
-        {
-            velocity.X += speed;
-        }
-        
 
         if (inputHelper.MouseLeftButtonPressed())
         {
@@ -106,8 +96,8 @@ public class Player : AnimatedGameObject
                     Beam();
                     break;
             }
-            if(bar.size > 0)
-            bar.size -= 500;
+            if (bar.size > 0)
+                bar.size -= 500;
         }
 
         if (inputHelper.KeyPressed(Keys.U)) // debug: temp power up switch
@@ -122,7 +112,7 @@ public class Player : AnimatedGameObject
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
         base.Draw(gameTime, spriteBatch);
-        
+
         switch (powerUpState) // to indicate which of the different states for different power ups is active.
         {
             case 0:
@@ -148,13 +138,13 @@ public class Player : AnimatedGameObject
         double x = inputHelper.MousePosition.X - position.X;
         double y = inputHelper.MousePosition.Y - position.Y;
         double z = Math.Atan2(y, x);
-        int dir = (int)(z * (180/ Math.PI));
+        int dir = (int)(z * (180 / Math.PI));
         friendlyBullets.Add(new FriendlyBullet(ShootPosition, dir, 5, 2, 0, (int)bar.size / 1000));
     }
 
     void Multishot() // Multi-Shot
     {
-        for (int w = 0; w < bar.size/1000; w += 2)
+        for (int w = 0; w < bar.size / 1000; w += 2)
         {
             friendlyBullets.Add(new FriendlyBullet(ShootPosition, 270 + w, 5, 2, 0, (int)bar.size / 1000));
             friendlyBullets.Add(new FriendlyBullet(ShootPosition, 270 - w, 5, 2, 0, (int)bar.size / 1000));
@@ -163,7 +153,7 @@ public class Player : AnimatedGameObject
 
     void Bigwave() // Default + Multi-Shot (PowerUp)
     {
-        for (int w = 0; w < bar.size/1000; w++)
+        for (int w = 0; w < bar.size / 1000; w++)
         {
             friendlyBullets.Add(new FriendlyBullet(ShootPosition, 240 + w, 5, 2, 0, (int)bar.size / 1000));
             friendlyBullets.Add(new FriendlyBullet(ShootPosition, 240 - w, 5, 2, 0, (int)bar.size / 1000));
@@ -176,7 +166,7 @@ public class Player : AnimatedGameObject
 
     void Curved() // Curved shot (incomplete experiment)
     {
-        for (int w = 0; w < bar.size/1000; w++)
+        for (int w = 0; w < bar.size / 1000; w++)
         {
             friendlyBullets.Add(new FriendlyBullet(ShootPosition, 270 + w, 5, 2, 1, (int)bar.size / 1000));
             friendlyBullets.Add(new FriendlyBullet(ShootPosition, 270 - w, 5, 2, -1, (int)bar.size / 1000));
@@ -185,7 +175,7 @@ public class Player : AnimatedGameObject
 
     void Beam() // Beam of Bullets (experimental)
     {
-        for (int w = 0; w < bar.size/1000; w++)
+        for (int w = 0; w < bar.size / 1000; w++)
         {
             friendlyBullets.Add(new FriendlyBullet(new Vector2(ShootPosition.X, ShootPosition.Y - 4 * w), 270, 5, 2, 0, (int)bar.size / 1000));
         }
@@ -197,10 +187,20 @@ public class Player : AnimatedGameObject
         powerUpState = random.Next(1, 4);
         powerUpTimer = 0;
     }
+
+    public void updateFuel(int fuelChange)
+    {
+        bar.size += fuelChange;
+    }
+
     public override void Reset()
     {
         base.Reset();
-        health = 190;
+        powerUpState = 0;
+        speed = 10f;
+        Position = new Vector2(0, 0);
+        Health = 190;
+        isDead = false;
         bar.Reset();
     }
 

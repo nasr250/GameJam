@@ -26,7 +26,7 @@ public class Planet : AnimatedGameObject
         {
             if (CollidesWith(player))
             {
-                player.health -= 10;
+                Player.Health -= 10;
                 player.Velocity /= 2;
             }
             if (!CollidesWith(player))
@@ -43,7 +43,6 @@ public class Planet : AnimatedGameObject
             if (CollidesWith(bullet))
             {
                 bullets.children[i].health--;
-                this.health--;
                 if (bullets.children[i].health < 0)
                 {
                     TextGameObject kills = GameWorld.Find("killsText") as TextGameObject;
@@ -66,7 +65,7 @@ public class Planet : AnimatedGameObject
             if (CollidesWith(friendlyBullet))
             {
                 friendlyBullets.children[i].health--;
-                this.health--;
+                //this.health--; //decreases planet health, could be used to destroy planets
                 if (friendlyBullets.children[i].health < 0)
                 {
                     TextGameObject kills = GameWorld.Find("killsText") as TextGameObject;

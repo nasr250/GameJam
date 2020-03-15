@@ -10,6 +10,7 @@ class PlayingState : GameObjectList
     protected int currentLevelIndex;
     protected ContentManager content;
     protected int difficulty = 0;
+    protected Button upgradeButton;
 
     public PlayingState(ContentManager content)
     {
@@ -18,7 +19,6 @@ class PlayingState : GameObjectList
         currentLevelIndex = 0;
         levels = new List<Level>();
         LoadLevels();
-
     }
 
     public Level CurrentLevel
@@ -62,6 +62,7 @@ class PlayingState : GameObjectList
         {
             GameEnvironment.GameStateManager.SwitchTo("levelFinishedState");
         }
+
     }
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)

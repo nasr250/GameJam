@@ -27,6 +27,7 @@ class GravityZero : GameEnvironment
         gameStateManager.AddGameState("playingState", new PlayingState(Content));
         gameStateManager.AddGameState("gameOverState", new GameOverState());
         gameStateManager.AddGameState("optionMenuState", new OptionMenuState());
+        gameStateManager.AddGameState("upgradeMenuState", new UpgradeMenustate());
         gameStateManager.SwitchTo("titleMenu");
 
         AssetManager.PlayMusic("Audio/played"); //source: temp

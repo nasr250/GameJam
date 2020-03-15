@@ -31,23 +31,15 @@ public abstract class Enemy : AnimatedGameObject
         }
         else
         {
-            shootTimer = 0.1f;
+            shootTimer = 2f;
         }
         Player player = GameWorld.Find("player") as Player;
         if(player != null)
         {
             if (CollidesWith(player))
             {
-                player.health--;
+                Player.Health--;
                 health--;
-            }
-            if (position.X < 460 - sprite.Width * 2 || position.X > 1460 + sprite.Width)
-            {
-                health = -1;
-            }
-            if (position.Y < 40 - sprite.Height * 2 || position.Y > 1040 + sprite.Height)
-            {
-                health = -1;
             }
             shootDirection = player.Position - position;
         }
