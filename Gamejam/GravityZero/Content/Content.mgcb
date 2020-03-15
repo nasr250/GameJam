@@ -292,7 +292,7 @@
 /processorParam:TextureFormat=Color
 /build:Sprites/scrap@1x1.png
 
-#begin Sprites/scrap@1x1.png
+#begin Sprites/ShipPreview@3x1.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -302,7 +302,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Sprites/scrap@1x1.png
+/build:Sprites/ShipPreview@3x1.png
 
 #begin Sprites/SpelFont.spritefont
 /importer:FontDescriptionImporter

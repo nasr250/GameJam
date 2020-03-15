@@ -5,11 +5,14 @@ class UpgradeMenustate : GameObjectList
 {
     protected Button backButton;
     protected BuyButton buyButton1, buyButton2, buyButton3;
-    protected TextGameObject ironText, carbonText, itemText1, itemText2, itemText3;
-    protected int price1, price2, price3, itemLevel1, itemLevel2, itemLevel3;
+    protected TextGameObject ironText, carbonText, itemText1, itemText2, itemText3, upgradeText;
+    protected int price1, price2, price3, itemLevel1, itemLevel2, itemLevel3, upgrade;
+    protected SpriteGameObject preview;
+
 
     public UpgradeMenustate()
     {
+
         //item prices
         price1 = 100;
         price2 = 150;
@@ -18,12 +21,14 @@ class UpgradeMenustate : GameObjectList
         itemLevel1 = 1;
         itemLevel2 = 1;
         itemLevel3 = 1;
+        //upgrade level
+        upgrade = 5;
 
         SpriteGameObject upgradeMenu = new SpriteGameObject("Backgrounds/UpgradeMenu", 0);
         upgradeMenu.Position = new Vector2(0, 0);
         Add(upgradeMenu);
 
-        backButton = new Button("Sprites/spr_button_play", 2);
+        backButton = new Button("Sprites/spr_button_back", 2);
         backButton.Position = new Vector2(1500, 150);
         Add(backButton);
 
@@ -47,6 +52,10 @@ class UpgradeMenustate : GameObjectList
         itemText3.Position = new Vector2(1550, 760);
         Add(itemText3);
 
+        upgradeText = new TextGameObject("Sprites/SpelFont", 1, "upgradetext");
+        upgradeText.Position = new Vector2(240, 350);
+        Add(upgradeText);
+
         buyButton1 = new BuyButton("Sprites/BuyButton@3x1", 2);
         buyButton1.Position = new Vector2(860, 800);
         Add(buyButton1);
@@ -58,6 +67,10 @@ class UpgradeMenustate : GameObjectList
         buyButton3 = new BuyButton("Sprites/BuyButton@3x1", 2);
         buyButton3.Position = new Vector2(1640, 800);
         Add(buyButton3);
+
+        preview= new SpriteGameObject("Sprites/ShipPreview@3x1", 2);
+        preview.Position = new Vector2(265, 385);
+        Add(preview);
     }
 
     public override void HandleInput(InputHelper inputHelper)
@@ -73,7 +86,7 @@ class UpgradeMenustate : GameObjectList
         itemText1.Text = "Level " + itemLevel1 + " Gun (Iron): " + price1;
         itemText2.Text = "Level " + itemLevel2 + " Health (Iron): " + price2;
         itemText3.Text = "Level " + itemLevel3 + " Booster(Carbon): " + price3;
-
+        upgradeText.Text = "Upgrade spaceship: Health Level " + upgrade + " Gun Level " +  upgrade + " Thruster Level " + upgrade;
         //Hoovers over the buy button and look if it is buyable.
         if (Player.ironCount >= price1)
         {
@@ -102,6 +115,22 @@ class UpgradeMenustate : GameObjectList
             buyButton3.hoover = false;
         }
 
+        if (itemLevel1 >= 5 && itemLevel2 >= 5 && itemLevel3 >= 5)
+        {
+            preview.preview1 = true;
+            upgrade = 10;
+        }
+        else 
+        {
+            preview.preview2 = false;
+            preview.preview1 = false;
+        }
+        if (itemLevel1 >= 10 && itemLevel2 >= 10 && itemLevel3 >= 10)
+        {
+            preview.preview2 = true;
+            preview.preview1 = false;
+        }
+
 
         //Looks if upgrade prices are the same and makes them hooverable if they are the same.
         if (price1 == price2 && Player.ironCount >= price1)
@@ -125,7 +154,7 @@ class UpgradeMenustate : GameObjectList
             Player.ironCount -= price2;
             price2 += price2;
             itemLevel2++;
-            Player.Health += 20;
+            Player.Health += 5;
         }
 
         if (buyButton3.Pressed && buyButton3.hoover == true && Player.carbonCount >= price3)
@@ -150,6 +179,7 @@ class UpgradeMenustate : GameObjectList
     }
     public override void Reset()
     {
+        upgrade = 5;
         itemLevel1 = 1;
         itemLevel2 = 1;
         itemLevel3 = 1;

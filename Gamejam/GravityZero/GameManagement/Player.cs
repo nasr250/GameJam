@@ -11,7 +11,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 public class Player : AnimatedGameObject
 {
-    public static float speed = 10f;
+    public static float speed = 0f;
     InputHelper inputHelper = new InputHelper();
     public static int powerUpState;
     public static float Health;
@@ -40,7 +40,6 @@ public class Player : AnimatedGameObject
         if (Health < 0)
         {
             isDead = true;
-
             GameEnvironment.GameStateManager.SwitchTo("GameOverState");
         }
 
@@ -72,7 +71,7 @@ public class Player : AnimatedGameObject
     
         if (inputHelper.IsKeyDown(Keys.Space))
         {
-            velocity = new Vector2((Velocity.X + (float)x) / 1.5f, (Velocity.Y + (float)y) / 1.5f);
+            velocity = new Vector2((Velocity.X + (float)x + speed) / 1.5f, (Velocity.Y + (float)y + speed) / 1.5f);
         }
 
         if (inputHelper.MouseLeftButtonPressed())
@@ -196,11 +195,12 @@ public class Player : AnimatedGameObject
     public override void Reset()
     {
         base.Reset();
+        ironCount = 0;
+        carbonCount = 0;
         powerUpState = 0;
         speed = 10f;
         Position = new Vector2(0, 0);
         Health = 190;
-        isDead = false;
         bar.Reset();
     }
 
