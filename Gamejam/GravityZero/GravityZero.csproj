@@ -49,7 +49,6 @@
     <Compile Include="GameManagement\AnimatedGameObject.cs" />
     <Compile Include="GameManagement\Animation.cs" />
     <Compile Include="GameManagement\AssetManager.cs" />
-    <Compile Include="GameManagement\PowerUp.cs" />
     <Compile Include="GameManagement\Shotbar.cs" />
     <Compile Include="GameManagement\Collision.cs" />
     <Compile Include="GameManagement\DrawingHelper.cs" />
@@ -80,7 +79,6 @@
     <Compile Include="Objects\Planet.cs" />
     <Compile Include="Projectile\FriendlyBullet.cs" />
     <Compile Include="Projectile\Bullet.cs" />
-    <Compile Include="Projectile\Laser.cs" />
     <Compile Include="Projectile\Projectile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GravityZero.cs" />
