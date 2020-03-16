@@ -83,8 +83,8 @@ public class Player : AnimatedGameObject
     {
         inputHelper.Update(); //commented lines are for debugging purposes
         Camera camera = GameWorld.Find("camera") as Camera;
-        double x = inputHelper.MousePosition.X - GameEnvironment.Screen.X / 2 + Width / 2;
-        double y = inputHelper.MousePosition.Y - GameEnvironment.Screen.Y / 2 + Height;
+        double x = inputHelper.MousePosition.X - GameEnvironment.Screen.X / 3 + Width / 2;
+        double y = inputHelper.MousePosition.Y - GameEnvironment.Screen.Y / 3 + Height;
         double z = Math.Atan2(y, x) + 0.5 * Math.PI;
         string tempstring = z.ToString("0.0000");
         sprite.spriteRotation = float.Parse(tempstring);
@@ -155,10 +155,8 @@ public class Player : AnimatedGameObject
 
     void SingleShot() // Default Shot
     {
-        double x = inputHelper.MousePosition.X - position.X;
-        double y = inputHelper.MousePosition.Y - position.Y;
-        double z = Math.Atan2(y, x);
-        int dir = (int)(z * (180 / Math.PI));
+        double dir = sprite.spriteRotation - 0.5 * Math.PI;
+        dir *= Math.PI / 180;
         friendlyBullets.Add(new FriendlyBullet(ShootPosition, dir, 5, 2, 0, (int)bar.size / 1000));
     }
 

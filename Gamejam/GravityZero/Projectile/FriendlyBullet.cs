@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Graphics;
 class FriendlyBullet : Bullet
 {
 
-    public FriendlyBullet(Vector2 startpos, int dir = 1, float spd = 1, int size = 1, double curv = 0, int damage = 1) : base(startpos, dir, spd, curv, damage)
+    public FriendlyBullet(Vector2 startpos, double dir = 1, float spd = 1, int size = 1, double curv = 0, int damage = 1) : base(startpos, dir, spd, curv, damage)
     {
 
     }
