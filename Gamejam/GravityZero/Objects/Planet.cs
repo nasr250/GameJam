@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 public class Planet : AnimatedGameObject
 {
     public const int G = 10000;
-    public const int mass = 100;
+    public static int mass = 100;
     public Planet(Vector2 pos, string sprite = "Sprites/planet@2x1") : base(id: "planet")
     {
         LoadAnimation(sprite, "default", true);

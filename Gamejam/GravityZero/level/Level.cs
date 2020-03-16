@@ -18,6 +18,10 @@ partial class Level : GameObjectList
     TimeSpan levelTime;
     public Level(int levelIndex) //this method loads a level, this is the place to put all the code that needs to be shared across all levels
     {
+
+        Add(new Camera());
+        Camera camera = GameWorld.Find("camera") as Camera;
+
         SpriteGameObject background = new SpriteGameObject("Backgrounds/background", -10, "background"); //source: https://rafaeldejongh.artstation.com/projects/1gX22
         background.Position = new Vector2(-GameEnvironment.Screen.X / 2, -GameEnvironment.Screen.Y / 2);
         Add(background);

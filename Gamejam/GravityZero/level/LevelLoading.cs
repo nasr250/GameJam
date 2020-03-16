@@ -5,10 +5,8 @@ using Microsoft.Xna.Framework;
 
 partial class Level : GameObjectList
 {
-    List<GameObject> gameObjects;
-    List<int> timeIntervals;
     int safezone = 700;
-    int planetsDensity = 1000;
+    int planetsDensity = 22000;
     int minPlanetDistance = 200;
     List<Vector2> planetlocations;
     public int worldborder = 10000;
@@ -18,11 +16,7 @@ partial class Level : GameObjectList
     public void LoadLevel(int levelIndex)// here all entities used in a level can be loaded
     {
         planetlocations = new List<Vector2>();
-        attempts = 0;
-        Add(new Camera());
-        Camera camera = GameWorld.Find("camera") as Camera;
-        camera.Reset();
-        levelIndex = 0;
+        attempts = 0;        
         for (int x = 1; x < planetsDensity; x++)
         {
             attempts++;
@@ -41,8 +35,16 @@ partial class Level : GameObjectList
             }
             if (!overlap)
             {
-                planetlocations.Add(randomplanetpos);
-                Add(new Planet(randomplanetpos));
+                if (GameEnvironment.Random.Next(0, 3) == 1)
+                {
+                    planetlocations.Add(randomplanetpos);
+                    Add(new BlackHole(randomplanetpos));
+                }
+                else
+                {
+                    planetlocations.Add(randomplanetpos);
+                    Add(new Planet(randomplanetpos));
+                }
                 planetcount++;
             }
             

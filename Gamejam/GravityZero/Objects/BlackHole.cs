@@ -7,9 +7,8 @@ using Microsoft.Xna.Framework;
 
 class BlackHole : Planet
 {
-    static  Vector2 poss = new Vector2(2000, 10);
-    public BlackHole() : base(poss, "Sprites/blackhole@1x1")
+    public BlackHole(Vector2 pos) : base(pos, "Sprites/blackhole@1x1")
     {
-        //mass = 1000;
+        mass = 500;
     }
 }
