@@ -45,6 +45,10 @@ public class SpriteGameObject : GameObject
                 {
                     sprite.Draw(spriteBatch, this.GlobalPosition + camera.Position / 55, origin);
                 }
+                else if (layer == 100)
+                {
+                    sprite.Draw(spriteBatch, this.GlobalPosition + camera.Position, origin);
+                }
                 else
                 {
                     sprite.Draw(spriteBatch, this.GlobalPosition + camera.Position, origin);
