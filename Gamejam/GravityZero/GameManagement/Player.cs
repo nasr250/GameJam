@@ -11,11 +11,11 @@ using Microsoft.Xna.Framework.Graphics;
 
 public class Player : AnimatedGameObject
 {
-    public static float speed = 10f;
+    public static float speed = 0f;
     InputHelper inputHelper = new InputHelper();
     public static int powerUpState;
     public static float Health;
-    public static bool isDead;
+    public static bool isDead, upgrade1, upgrade2, upgradeReset;
     public double powerUpTimer { get; private set; }
     public int mass = 10;
     GameObjectList friendlyBullets;
@@ -25,7 +25,7 @@ public class Player : AnimatedGameObject
 
     public Player(int layer = 0, string id = "") : base(layer, id)
     {
-        LoadAnimation("Sprites/player@5x2", "player", true);
+        LoadAnimation("Sprites/player1@4x1", "player", true);
         PlayAnimation("player");
         position = new Vector2(0, 0);
         bar = new Shotbar("Sprites/BarFilling");
@@ -33,18 +33,37 @@ public class Player : AnimatedGameObject
         powerUpTimer = 0;
         powerUpState = 0;
         isDead = false;
+
     }
 
     public override void Update(GameTime gameTime)
     {
+        base.Update(gameTime);
+        if (upgrade1)
+        {
+            LoadAnimation("Sprites/player2@4x1", "player", true);
+            PlayAnimation("player");
+            upgrade1 = false;
+        }
+        if (upgrade2)
+        {
+            LoadAnimation("Sprites/player3@4x1", "player", true);
+            PlayAnimation("player");
+            upgrade2 = false;
+        }
+        if (upgradeReset)
+        {
+            LoadAnimation("Sprites/player1@4x1", "player", true);
+            PlayAnimation("player");
+            upgradeReset = false;
+        }
+
         if (Health < 0)
         {
             isDead = true;
-
+            upgradeReset = true;
             GameEnvironment.GameStateManager.SwitchTo("GameOverState");
         }
-
-        base.Update(gameTime);
         bar.Update(gameTime);
         bar.health = Health;
         ShootPosition.X = position.X;
@@ -69,10 +88,11 @@ public class Player : AnimatedGameObject
         double z = Math.Atan2(y, x) + 0.5 * Math.PI;
         string tempstring = z.ToString("0.0000");
         sprite.spriteRotation = float.Parse(tempstring);
-    
+
+
         if (inputHelper.IsKeyDown(Keys.Space))
         {
-            velocity = new Vector2((Velocity.X + (float)x) / 1.5f, (Velocity.Y + (float)y) / 1.5f);
+            velocity = new Vector2((Velocity.X + (float)x + speed) / 1.5f, (Velocity.Y + (float)y + speed) / 1.5f);
         }
 
         if (inputHelper.MouseLeftButtonPressed())
@@ -196,11 +216,12 @@ public class Player : AnimatedGameObject
     public override void Reset()
     {
         base.Reset();
+        ironCount = 0;
+        carbonCount = 0;
         powerUpState = 0;
         speed = 10f;
         Position = new Vector2(0, 0);
         Health = 190;
-        isDead = false;
         bar.Reset();
     }
 

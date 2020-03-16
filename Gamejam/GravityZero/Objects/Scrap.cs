@@ -44,6 +44,8 @@ public class Scrap : AnimatedGameObject
                     Player.carbonCount += 10;
                     break;
             }
+
+            health = -1;
         }
     }
 }

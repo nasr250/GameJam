@@ -74,13 +74,6 @@ public class GameObjectList : GameObject
             {
                 if(children[i].health < 0)
                 {
-                    if (children[i] is Enemy && GameEnvironment.Random.Next(100) >= 90)
-                    {
-                        PowerUp powerUp = new PowerUp();
-                        powerUp.Position = children[i].Position;
-                        Add(powerUp);
-                    }
-                    //CheckPowerUpSpawn(children[i]);
                     Remove(children[i]);
                     continue;
                 }
