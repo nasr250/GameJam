@@ -92,7 +92,7 @@ public class Player : AnimatedGameObject
 
         if (inputHelper.IsKeyDown(Keys.Space))
         {
-            velocity = new Vector2((Velocity.X + (float)x + speed) / 1.5f, (Velocity.Y + (float)y + speed) / 1.5f);
+            velocity = new Vector2((Velocity.X + (float)x + speed) / 1.8f, (Velocity.Y + (float)y + speed) / 1.8f);
         }
 
         if (inputHelper.MouseLeftButtonPressed())

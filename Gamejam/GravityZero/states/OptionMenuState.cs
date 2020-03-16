@@ -31,7 +31,7 @@ class OptionMenuState : GameObjectList
 
         Volume = new SliderButton("Sprites/spr_button_sliderback", "Sprites/spr_button_sliderfront");
         Add(Volume);
-        Volume.Position = new Vector2(GameEnvironment.Screen.X /2 - 100, GameEnvironment.Screen.Y / 2);
+        Volume.Position = new Vector2(GameEnvironment.Screen.X /2 - 200, GameEnvironment.Screen.Y / 2);
         Volume.Value = 1;
     }
 
@@ -43,7 +43,7 @@ class OptionMenuState : GameObjectList
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
         base.Draw(gameTime, spriteBatch);
-        spriteBatch.DrawString(spriteFont, "Volume:", Volume.Position + new Vector2(0, -20), Color.White);
+        spriteBatch.DrawString(spriteFont, "Volume:", Volume.Position + new Vector2(170, -40), Color.White);
 
     }
 
