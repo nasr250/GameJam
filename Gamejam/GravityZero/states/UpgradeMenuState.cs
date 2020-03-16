@@ -7,7 +7,7 @@ class UpgradeMenustate : GameObjectList
     protected BuyButton buyButton1, buyButton2, buyButton3;
     protected TextGameObject ironText, carbonText, itemText1, itemText2, itemText3, upgradeText;
     protected int price1, price2, price3, itemLevel1, itemLevel2, itemLevel3, upgrade;
-    protected SpriteGameObject preview;
+    protected UpgradePreview preview;
 
 
     public UpgradeMenustate()
@@ -68,7 +68,7 @@ class UpgradeMenustate : GameObjectList
         buyButton3.Position = new Vector2(1640, 800);
         Add(buyButton3);
 
-        preview= new SpriteGameObject("Sprites/ShipPreview@3x1", 2);
+        preview= new UpgradePreview("Sprites/ShipPreview@3x1", 2);
         preview.Position = new Vector2(265, 385);
         Add(preview);
     }
@@ -86,7 +86,7 @@ class UpgradeMenustate : GameObjectList
         itemText1.Text = "Level " + itemLevel1 + " Gun (Iron): " + price1;
         itemText2.Text = "Level " + itemLevel2 + " Health (Iron): " + price2;
         itemText3.Text = "Level " + itemLevel3 + " Booster(Carbon): " + price3;
-        upgradeText.Text = "Upgrade spaceship: Health Level " + upgrade + " Gun Level " +  upgrade + " Thruster Level " + upgrade;
+        upgradeText.Text = "Upgrade spaceship: Health Level " + upgrade + " & Gun Level " +  upgrade + " & Thruster Level " + upgrade;
         //Hoovers over the buy button and look if it is buyable.
         if (Player.ironCount >= price1)
         {
@@ -118,10 +118,12 @@ class UpgradeMenustate : GameObjectList
         if (itemLevel1 >= 5 && itemLevel2 >= 5 && itemLevel3 >= 5)
         {
             preview.preview1 = true;
+            Player.upgrade1 = true;
             upgrade = 10;
         }
         else 
         {
+            Player.upgrade1 = false;
             preview.preview2 = false;
             preview.preview1 = false;
         }
@@ -129,11 +131,17 @@ class UpgradeMenustate : GameObjectList
         {
             preview.preview2 = true;
             preview.preview1 = false;
+            Player.upgrade1 = false;
+            Player.upgrade2 = true;
+        }
+        else
+        {
+            Player.upgrade2 = false; 
         }
 
 
-        //Looks if upgrade prices are the same and makes them hooverable if they are the same.
-        if (price1 == price2 && Player.ironCount >= price1)
+            //Looks if upgrade prices are the same and makes them hooverable if they are the same.
+            if (price1 == price2 && Player.ironCount >= price1)
         {
             buyButton1.hoover = true;
             buyButton2.hoover = true;

@@ -6,7 +6,7 @@ public class SpriteGameObject : GameObject
     protected SpriteSheet sprite;
     protected Vector2 origin;
     public bool PerPixelCollisionDetection = true;
-    public bool isAlive = true, preview1 = false, preview2 = false;
+    public bool isAlive = true;
 
     public SpriteGameObject(string assetName, int layer = 0, string id = "", int sheetIndex = 0)
         : base(layer, id)
@@ -103,20 +103,6 @@ public class SpriteGameObject : GameObject
             int left = (int)(GlobalPosition.X - origin.X);
             int top = (int)(GlobalPosition.Y - origin.Y);
             return new Rectangle(left, top, Width, Height);
-        }
-    }
-    public override void HandleInput(InputHelper inputHelper)
-    {
-        if (preview1 == true && preview2 == false)
-        {
-            Sprite.SheetIndex = 1;
-        }
-        else if (preview2)
-        {
-            sprite.SheetIndex = 2;
-        }
-        else {
-            sprite.SheetIndex = 0;
         }
     }
 

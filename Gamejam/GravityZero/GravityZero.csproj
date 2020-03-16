@@ -65,6 +65,7 @@
     <Compile Include="GameManagement\SpriteGameObject.cs" />
     <Compile Include="GameManagement\SpriteSheet.cs" />
     <Compile Include="GameManagement\TextGameObject.cs" />
+    <Compile Include="GameManagement\UpgradePreview.cs" />
     <Compile Include="level\Level.cs" />
     <Compile Include="level\LevelGameLoop.cs" />
     <Compile Include="level\LevelLoading.cs" />
