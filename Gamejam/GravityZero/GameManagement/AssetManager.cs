@@ -39,7 +39,7 @@ public class AssetManager
     }
     public void AddMusic(string assetName)
     {
-        if (soundtrack.Count() < 3)
+        if (soundtrack.Count() < 50)
         {
             Song music = Content.Load<Song>(assetName);
             soundtrack.Add(music);
