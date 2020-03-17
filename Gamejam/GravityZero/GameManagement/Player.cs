@@ -11,6 +11,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 public class Player : AnimatedGameObject
 {
+    int counter;
     public static float speed = 0f;
     InputHelper inputHelper = new InputHelper();
     public static int powerUpState;
@@ -60,9 +61,17 @@ public class Player : AnimatedGameObject
 
         if (Health < 0)
         {
+            counter++;
             isDead = true;
             upgradeReset = true;
-            GameEnvironment.GameStateManager.SwitchTo("GameOverState");
+            LoadAnimation("Sprites/explosie@12x1", "player", true);
+            PlayAnimation("player");
+            if (counter > 60)
+            {
+                counter = 0;
+                GameEnvironment.GameStateManager.SwitchTo("GameOverState");
+            }
+
         }
         bar.Update(gameTime);
         bar.health = Health;
@@ -88,7 +97,6 @@ public class Player : AnimatedGameObject
         double z = Math.Atan2(y, x) + 0.5 * Math.PI;
         string tempstring = z.ToString("0.0000");
         sprite.spriteRotation = float.Parse(tempstring);
-
 
         if (inputHelper.IsKeyDown(Keys.Space))
         {
@@ -221,6 +229,7 @@ public class Player : AnimatedGameObject
         Position = new Vector2(0, 0);
         Health = 190;
         bar.Reset();
+        counter = 0;
     }
 
 }
