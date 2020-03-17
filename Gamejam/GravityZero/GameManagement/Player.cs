@@ -137,7 +137,6 @@ public class Player : AnimatedGameObject
             direction = new Vector2(float.Parse(temp2x), float.Parse(temp2y));
             velocity.X = Velocity.X + direction.X * 2 * speed;
             velocity.Y = Velocity.Y + direction.Y * 2 * speed;
-            Console.WriteLine(velocity + " " + direction);
 
             if (Velocity.X > 500)
             {

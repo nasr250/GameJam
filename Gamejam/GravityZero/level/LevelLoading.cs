@@ -6,10 +6,10 @@ using Microsoft.Xna.Framework;
 partial class Level : GameObjectList
 {
     int safezone = 200;
-    int planetsDensity = 12000;
-    int minPlanetDistance = 100;
+    int planetsDensity = 1000;
+    int minPlanetDistance = 40;
     List<Vector2> planetlocations;
-    public int worldborder = 20000;
+    public int worldborder = 15000;
     int attempts;
     int planetcount;
 
@@ -19,15 +19,14 @@ partial class Level : GameObjectList
         attempts = 0;        
         for (int x = 1; x < planetsDensity; x++)
         {
-            attempts++;
-            Console.WriteLine(attempts);
+            //attempts++;
+            //Console.WriteLine(attempts);
             bool overlap = false;
             Vector2 randomplanetpos = new Vector2((GameEnvironment.Random.Next(0, 2) * 2 - 1) * GameEnvironment.Random.Next(0, worldborder),
                                             (GameEnvironment.Random.Next(0, 2) * 2 - 1) * GameEnvironment.Random.Next(0, worldborder));
             foreach(Vector2 planetpos in planetlocations)
             {
-                if((randomplanetpos.X + minPlanetDistance > planetpos.X && randomplanetpos.X - minPlanetDistance < planetpos.X) ||
-                   (randomplanetpos.Y + minPlanetDistance > planetpos.Y && randomplanetpos.Y - minPlanetDistance < planetpos.Y) ||
+                if(Math.Abs(randomplanetpos.X - planetpos.X) < minPlanetDistance || Math.Abs(randomplanetpos.Y - planetpos.Y) < minPlanetDistance ||
                     randomplanetpos.X > -safezone && randomplanetpos.X < safezone || randomplanetpos.Y > -safezone && randomplanetpos.Y < safezone) //planet overlaps other planet?
                 {
                     //return to for loop
