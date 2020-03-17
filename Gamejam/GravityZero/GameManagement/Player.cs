@@ -71,7 +71,6 @@ public class Player : AnimatedGameObject
                 counter = 0;
                 GameEnvironment.GameStateManager.SwitchTo("GameOverState");
             }
-
         }
         bar.Update(gameTime);
         bar.health = Health;

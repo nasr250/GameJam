@@ -1,4 +1,4 @@
-﻿ using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Media;
 using System;
 
@@ -10,11 +10,12 @@ class GravityZero : GameEnvironment
         GravityZero game = new GravityZero();
         game.Run();
     }
-
+    int once = 1;
     public GravityZero()
     {
         Content.RootDirectory = "Content";
         IsMouseVisible = true;
+
     }
 
     protected override void LoadContent()
@@ -30,7 +31,21 @@ class GravityZero : GameEnvironment
         gameStateManager.AddGameState("upgradeMenuState", new UpgradeMenustate());
         gameStateManager.SwitchTo("titleMenu");
 
-        AssetManager.PlayMusic("Audio/played"); //source: temp
+
         MediaPlayer.Volume = 0.1f;
+    }
+    protected override void Update(GameTime gameTime)
+    {
+
+        base.Update(gameTime);
+        AssetManager.AddMusic("Audio/intro");
+        AssetManager.AddMusic("Audio/arpanauts");
+        AssetManager.AddMusic("Audio/searching");
+
+        if (MediaPlayer.State == MediaState.Stopped)
+        {
+            AssetManager.PlaySong();
+        }
+
     }
 }
