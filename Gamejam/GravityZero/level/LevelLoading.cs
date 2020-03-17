@@ -30,9 +30,9 @@ partial class Level : GameObjectList
         bh = new BlackHole();
         bh.Position = new Vector2(4000, 1000);
         Add(bh);
-        Enemy enemy = new MovingEnemy(new Vector2(1000, 1000));
-        enemy.Position = new Vector2(500, 1000);
-        Add(enemy);
+        Enemy enemy1 = new MovingEnemy(new Vector2(1000, 1000));
+        enemy1.Position = new Vector2(500, 1000);
+        Add(enemy1);
     }
 
 

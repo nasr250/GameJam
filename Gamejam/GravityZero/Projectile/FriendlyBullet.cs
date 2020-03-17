@@ -14,26 +14,8 @@ class FriendlyBullet : Bullet
     {
 
     }
-
-    protected override void CheckCollision()
-    {
-        GameObjectList enemies = GameWorld.Find("enemies") as GameObjectList;
-        for (int i = enemies.children.Count - 1; i >= 0; i--)
-        {
-            SpriteGameObject enemy = enemies.children[i] as SpriteGameObject;
-            if (CollidesWith(enemy))
-            {
-                enemies.children[i].health--;
-                this.health--;
-                if (enemies.children[i].health < 0)
-                {
-                    TextGameObject kills = GameWorld.Find("killsText") as TextGameObject;
-                    kills.health++;
-                }
-            }
-        }
-
-    }
+    protected override void CheckCollision() //this one is empty because the collision is checked by the enemies
+    { }
 
 
 
