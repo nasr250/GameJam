@@ -11,7 +11,8 @@ using Microsoft.Xna.Framework.Graphics;
 
 public class Player : AnimatedGameObject
 {
-    public static float speed = 0f;
+    Vector2 direction = new Vector2(0, 0);
+    public static float speed = 1f;
     InputHelper inputHelper = new InputHelper();
     public static int powerUpState;
     public static float Health;
@@ -79,12 +80,17 @@ public class Player : AnimatedGameObject
 
     }
 
+    float VectorToAngle(Vector2 vector)
+    {
+        return (float)Math.Atan2(vector.Y, vector.X);
+    }
+
     public void HandleInput()
     {
         inputHelper.Update(); //commented lines are for debugging purposes
         Camera camera = GameWorld.Find("camera") as Camera;
         double x = inputHelper.MousePosition.X - GameEnvironment.Screen.X / 2 + Width / 2;
-        double y = inputHelper.MousePosition.Y - GameEnvironment.Screen.Y / 2 + Height;
+        double y = inputHelper.MousePosition.Y - GameEnvironment.Screen.Y / 2 + Height / 2;
         double z = Math.Atan2(y, x) + 0.5 * Math.PI;
         string tempstring = z.ToString("0.0000");
         sprite.spriteRotation = float.Parse(tempstring);
@@ -92,7 +98,27 @@ public class Player : AnimatedGameObject
 
         if (inputHelper.IsKeyDown(Keys.Space))
         {
-            velocity = new Vector2((Velocity.X + (float)x + speed) / 1.8f, (Velocity.Y + (float)y + speed) / 1.8f);
+            //Velocity = new Vector2((Velocity.X + (float)x + speed) / 1.8f, (Velocity.Y + (float)y + speed) / 1.8f);
+            //double angle = 0.5 * Math.PI;
+            double angle = Math.Atan2(y, x);
+            double x2 = Math.Cos(angle);
+            double y2 = Math.Sin(angle);
+            string temp2x = x2.ToString("0.0000");
+            string temp2y = y2.ToString("0.0000");
+
+            direction = new Vector2(float.Parse(temp2x), float.Parse(temp2y));
+            velocity.X = Velocity.X + direction.X * 2 * speed;
+            velocity.Y = Velocity.Y + direction.Y * 2 * speed;
+            Console.WriteLine(velocity + " " + direction);
+
+            if (Velocity.X > 500)
+            {
+                velocity.X = 500;
+            }
+            if (Velocity.Y > 500)
+            {
+                velocity.Y = 500;
+            }
         }
 
         if (inputHelper.MouseLeftButtonPressed())

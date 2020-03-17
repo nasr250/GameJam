@@ -6,16 +6,14 @@ using Microsoft.Xna.Framework;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Graphics;
 
-public class Planet : AnimatedGameObject
+public class Planet : SpriteGameObject
 {
     public const int G = 10000;
-    public static int mass = 100;
-    public Planet(Vector2 pos, string sprite = "Sprites/planet@2x1") : base(id: "planet")
+    public static int mass = 70;
+    public Planet(Vector2 pos, string sprite = "Sprites/planet_1") : base(sprite)
     {
-        LoadAnimation(sprite, "default", true);
-        PlayAnimation("default");
-        position = pos;
-        health = 2;        
+        position = pos;        
+        health = 2;
     }
 
     public override void Update(GameTime gameTime)
