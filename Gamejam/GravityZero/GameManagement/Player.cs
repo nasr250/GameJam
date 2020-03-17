@@ -283,6 +283,7 @@ public class Player : AnimatedGameObject
         Health = 190;
         bar.Reset();
         counter = 0;
+        velocity = new Vector2(0, 0);
     }
 
 }
