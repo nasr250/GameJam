@@ -115,11 +115,12 @@ class UpgradeMenustate : GameObjectList
             buyButton3.hoover = false;
         }
 
-        if (itemLevel1 >= 5 && itemLevel2 >= 5 && itemLevel3 >= 5)
+        //When all items reach a certain level the ship will upgrade.
+        if (itemLevel1 >= 2 && itemLevel2 >= 2 && itemLevel3 >= 2)
         {
             preview.preview1 = true;
             Player.upgrade1 = true;
-            upgrade = 10;
+            upgrade = 4;
         }
         else 
         {
@@ -127,7 +128,7 @@ class UpgradeMenustate : GameObjectList
             preview.preview2 = false;
             preview.preview1 = false;
         }
-        if (itemLevel1 >= 10 && itemLevel2 >= 10 && itemLevel3 >= 10)
+        if (itemLevel1 >= 4 && itemLevel2 >= 4 && itemLevel3 >= 4)
         {
             preview.preview2 = true;
             preview.preview1 = false;
@@ -140,22 +141,24 @@ class UpgradeMenustate : GameObjectList
         }
 
 
-            //Looks if upgrade prices are the same and makes them hooverable if they are the same.
-            if (price1 == price2 && Player.ironCount >= price1)
+        //Looks if upgrade prices are the same and makes them hooverable if they are the same.
+        if (price1 == price2 && Player.ironCount >= price1)
         {
             buyButton1.hoover = true;
             buyButton2.hoover = true;
         }
 
         //Buying upgrades
+        //Shooting: By upgrading your gun you can shoot faster and it will cost less fuel.
         if (buyButton1.Pressed && buyButton1.hoover == true && Player.ironCount >= price1) {
             Player.isDead = false;
             Player.ironCount -= price1;
             price1 += price1;
             itemLevel1++;
-            Player.powerUpState += 1;
+            Player.shootCooldown -= 5;
+            Player.reducedFuelCost += 50;
         }
-
+        //Health: By upgrading health you will be able to take more damage before you die.
         if (buyButton2.Pressed && buyButton2.hoover == true && Player.ironCount >= price2)
         {
             Player.isDead = false;
@@ -164,7 +167,7 @@ class UpgradeMenustate : GameObjectList
             itemLevel2++;
             Player.Health += 5;
         }
-
+        //Speed: By upgrading speed you will be able to move faster.
         if (buyButton3.Pressed && buyButton3.hoover == true && Player.carbonCount >= price3)
         {
             Player.isDead = false;
@@ -173,7 +176,7 @@ class UpgradeMenustate : GameObjectList
             itemLevel3++;
             Player.speed += 2f;
         }
-        //shop reset
+        //Shop reset
         if (Player.isDead == true)
         {
             Reset();
