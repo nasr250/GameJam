@@ -47,7 +47,7 @@ public class SpriteSheet
         }
     }
 
-    public void Draw(SpriteBatch spriteBatch, Vector2 position, Vector2 origin)
+    public void Draw(SpriteBatch spriteBatch, Vector2 position, Vector2 origin, float scale = 1f)
     {
         int columnIndex = sheetIndex % sheetColumns;
         int rowIndex = sheetIndex / sheetColumns % sheetRows;
@@ -57,8 +57,8 @@ public class SpriteSheet
         {
             spriteEffects = SpriteEffects.FlipHorizontally;
         }
-        spriteBatch.Draw(sprite, new Rectangle((int)position.X, (int)position.Y, Width, Height), spritePart, drawColor,
-            spriteRotation, origin, spriteEffects, 0.0f);
+        spriteBatch.Draw(sprite, position, spritePart, drawColor, spriteRotation, origin, scale, spriteEffects, 0f);
+        //spriteBatch.Draw(sprite, new Rectangle((int)position.X, (int)position.Y, Width, Height), spritePart, drawColor, spriteRotation, origin, spriteEffects, 0f);
     }
 
     public bool IsTranslucent(int x, int y)

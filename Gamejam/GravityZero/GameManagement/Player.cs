@@ -11,18 +11,19 @@ using Microsoft.Xna.Framework.Graphics;
 
 public class Player : AnimatedGameObject
 {
-    int counter;
-    public static float speed = 0f;
+    Vector2 direction = new Vector2(0, 0);
+    public static float speed = 1f;
     InputHelper inputHelper = new InputHelper();
-    public static int powerUpState;
+    public static int powerUpState, shootTimer, shootCooldown, reducedFuelCost, ironCount, carbonCount;
     public static float Health;
-    public static bool isDead, upgrade1, upgrade2, upgradeReset;
+    public static bool isDead, upgrade1, upgrade2;
+    public bool hasExploded, isDead2, upgradeReset;
     public double powerUpTimer { get; private set; }
     public int mass = 10;
     GameObjectList friendlyBullets;
     Vector2 ShootPosition;
     Shotbar bar;
-    public static int ironCount, carbonCount;
+    int counter;
 
     public Player(int layer = 0, string id = "") : base(layer, id)
     {
@@ -30,48 +31,72 @@ public class Player : AnimatedGameObject
         PlayAnimation("player");
         position = new Vector2(0, 0);
         bar = new Shotbar("Sprites/BarFilling");
+        shootCooldown = 50;
         Health = 190;
         powerUpTimer = 0;
         powerUpState = 0;
         isDead = false;
-
+        hasExploded = false;
+        isDead2 = true;
+        ironCount = 1000000;
     }
 
     public override void Update(GameTime gameTime)
     {
         base.Update(gameTime);
+        //Upgrades the ship when all the requirements are reached in the upgrade menu.
         if (upgrade1)
         {
             LoadAnimation("Sprites/player2@4x1", "player", true);
             PlayAnimation("player");
             upgrade1 = false;
         }
+        //Upgrades the ship for a second time when all the requirements are reached in the upgrade menu.
         if (upgrade2)
         {
             LoadAnimation("Sprites/player3@4x1", "player", true);
             PlayAnimation("player");
             upgrade2 = false;
         }
+        //When the player dies the ship will reset.
         if (upgradeReset)
         {
             LoadAnimation("Sprites/player1@4x1", "player", true);
             PlayAnimation("player");
             upgradeReset = false;
         }
-
-        if (Health < 0)
+/*      When the ship is exploding it will start a timer. Right before the timer reaches 60 it will reset the spaceship to its original form.
+        When the timer reaches 60 it will switch to the GameOverState.*/
+        if (hasExploded)
         {
             counter++;
             isDead = true;
-            upgradeReset = true;
-            LoadAnimation("Sprites/explosie@12x1", "player", true);
-            PlayAnimation("player");
-            if (counter > 60)
+            if (counter == 58)
+            {
+                upgradeReset = true;
+            }
+            if (counter == 59) {
+                upgradeReset = false; ;
+            }
+            if (counter == 60)
             {
                 counter = 0;
                 GameEnvironment.GameStateManager.SwitchTo("GameOverState");
+                hasExploded = false;
             }
         }
+        //If health goes below 0 the ship will explode.
+        if (Health <= 0 && isDead2)
+        {
+            LoadAnimation("Sprites/explosie@12x1", "player", true);
+            PlayAnimation("player");
+            hasExploded = true;
+            isDead2 = false;
+        }
+
+        //ShootTimer
+        shootTimer++;
+
         bar.Update(gameTime);
         bar.health = Health;
         ShootPosition.X = position.X;
@@ -82,24 +107,46 @@ public class Player : AnimatedGameObject
         {
             Health -= 0.5f;
         }
+    }
 
-
-
+    float VectorToAngle(Vector2 vector)
+    {
+        return (float)Math.Atan2(vector.Y, vector.X);
     }
 
     public void HandleInput()
     {
         inputHelper.Update(); //commented lines are for debugging purposes
         Camera camera = GameWorld.Find("camera") as Camera;
-        double x = inputHelper.MousePosition.X - GameEnvironment.Screen.X / 3 + Width / 2;
-        double y = inputHelper.MousePosition.Y - GameEnvironment.Screen.Y / 3 + Height;
+        double x = inputHelper.MousePosition.X - GameEnvironment.Screen.X / 2 + Width / 2;
+        double y = inputHelper.MousePosition.Y - GameEnvironment.Screen.Y / 2 + Height / 2;
         double z = Math.Atan2(y, x) + 0.5 * Math.PI;
         string tempstring = z.ToString("0.0000");
         sprite.spriteRotation = float.Parse(tempstring);
 
         if (inputHelper.IsKeyDown(Keys.Space))
         {
-            velocity = new Vector2((Velocity.X + (float)x + speed) / 1.8f, (Velocity.Y + (float)y + speed) / 1.8f);
+            //Velocity = new Vector2((Velocity.X + (float)x + speed) / 1.8f, (Velocity.Y + (float)y + speed) / 1.8f);
+            //double angle = 0.5 * Math.PI;
+            double angle = Math.Atan2(y, x);
+            double x2 = Math.Cos(angle);
+            double y2 = Math.Sin(angle);
+            string temp2x = x2.ToString("0.0000");
+            string temp2y = y2.ToString("0.0000");
+
+            direction = new Vector2(float.Parse(temp2x), float.Parse(temp2y));
+            velocity.X = Velocity.X + direction.X * 2 * speed;
+            velocity.Y = Velocity.Y + direction.Y * 2 * speed;
+            Console.WriteLine(velocity + " " + direction);
+
+            if (Velocity.X > 500)
+            {
+                velocity.X = 500;
+            }
+            if (Velocity.Y > 500)
+            {
+                velocity.Y = 500;
+            }
         }
 
         if (inputHelper.MouseLeftButtonPressed())
@@ -123,8 +170,8 @@ public class Player : AnimatedGameObject
                     Beam();
                     break;
             }
-            if (bar.size > 0)
-                bar.size -= 500;
+            if (bar.size > 0 && shootTimer == 0)
+                bar.size -= (500 - reducedFuelCost);
         }
 
         if (inputHelper.KeyPressed(Keys.U)) // debug: temp power up switch
@@ -162,9 +209,13 @@ public class Player : AnimatedGameObject
 
     void SingleShot() // Default Shot
     {
-        double dir = sprite.spriteRotation - 0.5 * Math.PI;
-        dir *= Math.PI / 180;
-        friendlyBullets.Add(new FriendlyBullet(ShootPosition, dir, 5, 2, 0, (int)bar.size / 1000));
+        if (shootTimer > shootCooldown)
+        {
+            double dir = sprite.spriteRotation - 0.5 * Math.PI;
+            dir *= Math.PI / 180;
+            friendlyBullets.Add(new FriendlyBullet(ShootPosition, dir, 5, 2, 0, (int)bar.size / 1000));
+            shootTimer = 0;
+        }
     }
 
     void Multishot() // Multi-Shot
@@ -213,7 +264,8 @@ public class Player : AnimatedGameObject
         powerUpTimer = 0;
     }
 
-    public void updateFuel(int fuelChange)
+    public void updateFuel
+        (int fuelChange)
     {
         bar.size += fuelChange;
     }
@@ -221,6 +273,8 @@ public class Player : AnimatedGameObject
     public override void Reset()
     {
         base.Reset();
+        shootCooldown = 50;
+        isDead2 = true;
         ironCount = 0;
         carbonCount = 0;
         powerUpState = 0;

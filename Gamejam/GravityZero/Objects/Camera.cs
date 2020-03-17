@@ -10,7 +10,6 @@ public class Camera : GameObject
 {
     Vector2 centre;
 
-
     public Camera()
     {
         id = "camera";
@@ -24,14 +23,14 @@ public class Camera : GameObject
         Player player = GameWorld.Find("player") as Player;
         if (player != null)
         {
-            centre = new Vector2(GameEnvironment.Screen.X / 2 - player.Width / 2, GameEnvironment.Screen.Y / 2 + player.Height / 2);
+            centre = new Vector2(GameEnvironment.Screen.X / 2 - player.Width / 2, GameEnvironment.Screen.Y / 2 - player.Height / 2);
             if (true)
             {
                 position.X = centre.X - player.Position.X;
             }
             if (true)
             {
-                position.Y = centre.Y - 100 - player.Position.Y;
+                position.Y = centre.Y - player.Position.Y;
             }
         }
     }

@@ -6,15 +6,13 @@ using Microsoft.Xna.Framework;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Graphics;
 
-public class Planet : AnimatedGameObject
+public class Planet : SpriteGameObject
 {
-    public const int G = 7500;
-    public int mass = 100;
-    public Planet(string sprite = "Sprites/planet@2x1") : base(id: "planet")
+    public const int G = 10000;
+    public static int mass = 70;
+    public Planet(Vector2 pos, string sprite = "Sprites/planet_1") : base(sprite)
     {
-        LoadAnimation(sprite, "default", true);
-        PlayAnimation("default");
-        position = new Vector2(0, 0);
+        position = pos;        
         health = 2;
     }
 
@@ -43,11 +41,11 @@ public class Planet : AnimatedGameObject
             if (CollidesWith(bullet))
             {
                 bullets.children[i].health--;
-                if (bullets.children[i].health < 0)
+                /*if (bullets.children[i].health < 0)
                 {
                     TextGameObject kills = GameWorld.Find("killsText") as TextGameObject;
                     kills.health++;
-                }
+                }*/
             }
             if (!CollidesWith(bullet))
             {
@@ -66,11 +64,11 @@ public class Planet : AnimatedGameObject
             {
                 friendlyBullets.children[i].health--;
                 //this.health--; //decreases planet health, could be used to destroy planets
-                if (friendlyBullets.children[i].health < 0)
+                /*if (friendlyBullets.children[i].health < 0)
                 {
                     TextGameObject kills = GameWorld.Find("killsText") as TextGameObject;
                     kills.health++;
-                }
+                }*/
             }
             if (!CollidesWith(friendlyBullet))
             {
