@@ -16,7 +16,7 @@ public class Player : AnimatedGameObject
     InputHelper inputHelper = new InputHelper();
     public static int powerUpState;
     public static float Health;
-    public static bool isDead, upgrade1, upgrade2, upgradeReset;
+    public static bool isDead, isDead2, upgrade1, upgrade2, upgradeReset;
     public double powerUpTimer { get; private set; }
     public int mass = 10;
     GameObjectList friendlyBullets;
@@ -34,7 +34,7 @@ public class Player : AnimatedGameObject
         powerUpTimer = 0;
         powerUpState = 0;
         isDead = false;
-
+        isDead2 = false;
     }
 
     public override void Update(GameTime gameTime)
@@ -52,6 +52,7 @@ public class Player : AnimatedGameObject
             PlayAnimation("player");
             upgrade2 = false;
         }
+
         if (upgradeReset)
         {
             LoadAnimation("Sprites/player1@4x1", "player", true);
@@ -59,20 +60,31 @@ public class Player : AnimatedGameObject
             upgradeReset = false;
         }
 
-        if (Health < 0)
+        if (isDead2)
         {
             counter++;
-            isDead = true;
-            upgradeReset = true;
-            LoadAnimation("Sprites/explosie@12x1", "player", true);
-            PlayAnimation("player");
-            if (counter > 60)
+            if (counter == 58)
+            {
+                upgradeReset = true;
+            }
+            if (counter == 59) {
+                upgradeReset = false; ;
+            }
+            if (counter == 60)
             {
                 counter = 0;
                 GameEnvironment.GameStateManager.SwitchTo("GameOverState");
+                isDead2 = false;
             }
-
         }
+
+        if (Health == 0 )
+        {
+            LoadAnimation("Sprites/explosie@12x1", "player", true);
+            PlayAnimation("player");
+            isDead2 = true;
+        }
+
         bar.Update(gameTime);
         bar.health = Health;
         ShootPosition.X = position.X;
@@ -83,9 +95,6 @@ public class Player : AnimatedGameObject
         {
             Health -= 0.5f;
         }
-
-
-
     }
 
     public void HandleInput()
