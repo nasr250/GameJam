@@ -44,7 +44,21 @@ public abstract class Enemy : AnimatedGameObject
             shootDirection = player.Position - position;
         }
         
-
+        GameObjectList friendlyBullets = GameWorld.Find("friendlyBullets") as GameObjectList;
+        for (int i = friendlyBullets.children.Count - 1; i >= 0; i--)
+        {
+            SpriteGameObject friendlyBullet = friendlyBullets.children[i] as SpriteGameObject;
+            if (CollidesWith(friendlyBullet))
+            {
+                friendlyBullets.children[i].health--;
+                this.health--;
+                if (this.health < 0)
+                {
+                    TextGameObject kills = GameWorld.Find("killsText") as TextGameObject;
+                    kills.health++;
+                }
+            }
+        }
     }
 
     public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
