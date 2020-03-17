@@ -196,7 +196,7 @@
 /processorParam:TextureFormat=Color
 /build:Sprites/enemy3@2x1.png
 
-#begin Sprites/explosion.png
+#begin Sprites/explosie@12x1.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -206,7 +206,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Sprites/explosion.png
+/build:Sprites/explosie@12x1.png
 
 #begin Sprites/fuel.png
 /importer:TextureImporter
@@ -526,4 +526,16 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Sprites/spr_upgrade_button.png
+
+#begin Sprites/UFO@1x1.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Sprites/UFO@1x1.png
 

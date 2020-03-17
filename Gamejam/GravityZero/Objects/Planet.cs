@@ -41,11 +41,11 @@ public class Planet : SpriteGameObject
             if (CollidesWith(bullet))
             {
                 bullets.children[i].health--;
-                if (bullets.children[i].health < 0)
+                /*if (bullets.children[i].health < 0)
                 {
                     TextGameObject kills = GameWorld.Find("killsText") as TextGameObject;
                     kills.health++;
-                }
+                }*/
             }
             if (!CollidesWith(bullet))
             {
@@ -64,11 +64,11 @@ public class Planet : SpriteGameObject
             {
                 friendlyBullets.children[i].health--;
                 //this.health--; //decreases planet health, could be used to destroy planets
-                if (friendlyBullets.children[i].health < 0)
+                /*if (friendlyBullets.children[i].health < 0)
                 {
                     TextGameObject kills = GameWorld.Find("killsText") as TextGameObject;
                     kills.health++;
-                }
+                }*/
             }
             if (!CollidesWith(friendlyBullet))
             {

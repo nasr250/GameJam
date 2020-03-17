@@ -15,11 +15,11 @@ class Bullet : Projectile
     Rectangle screen;
     float despawnTimer = 10f;
 
-    public Bullet(Vector2 startpos, int dir = 1, float spd = 1, double curv = 0, int damage = 1)
+    public Bullet(Vector2 startpos, double dir = 1, float spd = 1, double curv = 0, int damage = 1)
     {
         direction = dir; speed = spd; position = startpos; curve = curv;
         while (direction >= 360) { direction -= 360; }
-        direction *= Math.PI / 180;
+        direction *= 180 / Math.PI;
         curve *= Math.PI / 180;
         velocity.Y = -5;
         health = 1;

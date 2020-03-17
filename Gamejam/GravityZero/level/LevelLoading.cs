@@ -86,6 +86,12 @@ partial class Level : GameObjectList
             }*/
         }
         Console.WriteLine("created planets: " + planetcount);
+        bh = new BlackHole();
+        bh.Position = new Vector2(4000, 1000);
+        Add(bh);
+        Enemy enemy1 = new MovingEnemy(new Vector2(1000, 1000));
+        enemy1.Position = new Vector2(500, 1000);
+        Add(enemy1);
     }
 
 
