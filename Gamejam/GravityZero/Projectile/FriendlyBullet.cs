@@ -14,7 +14,8 @@ class FriendlyBullet : Bullet
     {
 
     }
-
+    protected override void CheckCollision() //this one is empty because the collision is checked by the enemies
+    { }
 
 
 
