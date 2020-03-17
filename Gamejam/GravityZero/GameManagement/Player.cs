@@ -23,6 +23,7 @@ public class Player : AnimatedGameObject
     GameObjectList friendlyBullets;
     Vector2 ShootPosition;
     Shotbar bar;
+    int counter;
 
     public Player(int layer = 0, string id = "") : base(layer, id)
     {
