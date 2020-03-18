@@ -15,7 +15,7 @@ public abstract class Enemy : AnimatedGameObject
         LoadAnimation(sprite, "default", true);
         PlayAnimation("default");
         position = new Vector2(0, 0);
-        health = 2;
+        health = 1;
     }
 
     public override void Update(GameTime gameTime)
