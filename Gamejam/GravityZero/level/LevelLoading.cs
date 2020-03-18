@@ -68,7 +68,7 @@ partial class Level : GameObjectList
             {
                 Add(new MovingEnemy(RandomPos()));
             }
-            else if (random == 2)
+            else
             {
                 Add(new RammingEnemy(RandomPos()));
             }
