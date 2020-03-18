@@ -157,7 +157,7 @@ public class Player : AnimatedGameObject
         string tempstring = z.ToString("0.0000");
         sprite.spriteRotation = float.Parse(tempstring);
 
-        if (inputHelper.IsKeyDown(Keys.Space))
+        if (inputHelper.IsKeyDown(Keys.Space) && bar.size >= 0)
         {
             //reduce fuel:
             bar.size -= 20;
@@ -198,12 +198,12 @@ public class Player : AnimatedGameObject
                 bar.size -= (500 - reducedFuelCost);
         }
 
-        if (inputHelper.KeyPressed(Keys.U)) // debug: temp power up switch
+        /*if (inputHelper.KeyPressed(Keys.U)) // debug: temp power up switch
         {
             if (powerUpState <= 3)
                 powerUpState++;
             else powerUpState = 0;
-        }
+        }*/
 
     }
 
