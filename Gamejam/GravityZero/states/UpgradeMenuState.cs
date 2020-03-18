@@ -14,15 +14,15 @@ class UpgradeMenustate : GameObjectList
     {
 
         //item prices
-        price1 = 100;
-        price2 = 150;
-        price3 = 100;
+        price1 = 50;
+        price2 = 50;
+        price3 = 50;
         //item level
         itemLevel1 = 1;
         itemLevel2 = 1;
         itemLevel3 = 1;
         //upgrade level
-        upgrade = 5;
+        upgrade = 2;
 
         SpriteGameObject upgradeMenu = new SpriteGameObject("Backgrounds/UpgradeMenu", 0);
         upgradeMenu.Position = new Vector2(0, 0);
@@ -120,7 +120,7 @@ class UpgradeMenustate : GameObjectList
         {
             preview.preview1 = true;
             Player.upgrade1 = true;
-            upgrade = 4;
+            upgrade = 3;
         }
         else 
         {
@@ -128,7 +128,7 @@ class UpgradeMenustate : GameObjectList
             preview.preview2 = false;
             preview.preview1 = false;
         }
-        if (itemLevel1 >= 4 && itemLevel2 >= 4 && itemLevel3 >= 4)
+        if (itemLevel1 >= 3 && itemLevel2 >= 3 && itemLevel3 >= 3)
         {
             preview.preview2 = true;
             preview.preview1 = false;
@@ -190,12 +190,12 @@ class UpgradeMenustate : GameObjectList
     }
     public override void Reset()
     {
-        upgrade = 5;
+        upgrade = 2;
         itemLevel1 = 1;
         itemLevel2 = 1;
         itemLevel3 = 1;
-        price1 = 100;
-        price2 = 150;
-        price3 = 100;
+        price1 = 50;
+        price2 = 50;
+        price3 = 50;
     }
 }
