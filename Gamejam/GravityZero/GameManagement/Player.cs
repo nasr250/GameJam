@@ -22,6 +22,8 @@ public class Player : AnimatedGameObject
     public int mass = 10;
     GameObjectList friendlyBullets;
     Vector2 ShootPosition;
+    Vector2 PrevVelocity;
+    Vector2 A;
     public Shotbar bar;
     int counter;
     int maxspeed = 500;
@@ -43,7 +45,6 @@ public class Player : AnimatedGameObject
 
     public override void Update(GameTime gameTime)
     {
-        
         if (Velocity.X > maxspeed)
         {
             velocity.X = maxspeed;
