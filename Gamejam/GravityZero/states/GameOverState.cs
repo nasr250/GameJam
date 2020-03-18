@@ -18,7 +18,7 @@ class GameOverState : GameObjectList
         score.Text = Score.ToString();
         score.Color = Color.Black;
         Add(overlay);
-        Add(score);
+        //Add(score);
     }
 
     public override void HandleInput(InputHelper inputHelper)
