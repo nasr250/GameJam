@@ -13,11 +13,29 @@
 
 #---------------------------------- Content ---------------------------------#
 
+#begin Audio/arpanauts.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Audio/arpanauts.mp3
+
+#begin Audio/intro.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Audio/intro.mp3
+
 #begin Audio/played.mp3
 /importer:Mp3Importer
 /processor:SongProcessor
 /processorParam:Quality=Best
 /build:Audio/played.mp3
+
+#begin Audio/searching.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Audio/searching.mp3
 
 #begin Audio/telepathy.mp3
 /importer:Mp3Importer
