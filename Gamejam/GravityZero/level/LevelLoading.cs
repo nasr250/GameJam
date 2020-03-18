@@ -7,7 +7,7 @@ partial class Level : GameObjectList
 {
     int safezone = 800;
     int planetsDensity = 1000;
-    int enemyDensity = 15;
+    int enemyDensity = 10;
     int scrapDensity = 100;
     int minPlanetDistance = 50;
     List<Vector2> planetlocations;
@@ -42,7 +42,9 @@ partial class Level : GameObjectList
         for (int x = 1; x < enemyDensity; x++)
         {
             Vector2 randomenemypos = RandomPos();
-            Add(new MovingEnemy(randomenemypos)); 
+            Add(new MovingEnemy(randomenemypos));
+            Add(new RammingEnemy(randomenemypos));
+            Add(new SpinningEnemy(randomenemypos));
         }
     }
 

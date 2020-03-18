@@ -10,11 +10,11 @@ class RammingEnemy : Enemy
     Vector2 speed, direction;
     Vector2 movement = Vector2.Zero;
 
-    public RammingEnemy()
+    public RammingEnemy(Vector2 StartPos)
 	{
         Velocity /= 2;
         health = 1;
-
+        position = StartPos;
 	}
 
     public override void Update(GameTime gameTime)
@@ -29,6 +29,26 @@ class RammingEnemy : Enemy
         {
             movement += 5 * direction; //makes the movement of the enemy more towards the direction between the enemy and the endpoint
             position += movement;
+        }
+        if (CollidesWith(player))
+        {
+            Player.Health -= 10;
+            health--;
+        }
+        GameObjectList friendlyBullets = GameWorld.Find("friendlyBullets") as GameObjectList;
+        for (int i = friendlyBullets.children.Count - 1; i >= 0; i--)
+        {
+            SpriteGameObject friendlyBullet = friendlyBullets.children[i] as SpriteGameObject;
+            if (CollidesWith(friendlyBullet))
+            {
+                friendlyBullets.children[i].health--;
+                this.health--;
+                if (this.health < 0)
+                {
+                    TextGameObject kills = GameWorld.Find("killsText") as TextGameObject;
+                    kills.health++;
+                }
+            }
         }
     }
 
