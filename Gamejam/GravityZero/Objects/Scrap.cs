@@ -7,16 +7,12 @@ public class Scrap : AnimatedGameObject
 {
     int scrapType;
 
-    //Tijdelijke aanpassingen om te checken of de upgrademenu werkt met carbon.
-
     public Scrap(Vector2 pos)
     {
-        Random random = new Random();
         position = pos;
-        //List<string> materials = new List<string> { "iron", "carbon", "fuel" };
-        //scrapType = random.Next(materials.Count);
-        //string path = "Sprites/" + materials[scrapType] + "@1x1";
-        string path = "Sprites/scrap@1x1";
+        List<string> materials = new List<string> { "iron", "carbon", "fuel" };
+        scrapType = GameEnvironment.Random.Next(materials.Count);
+        string path = "Sprites/" + materials[scrapType] + "@1x1";
         LoadAnimation(path, "scrap", true);
         PlayAnimation("scrap");
     }
@@ -27,24 +23,18 @@ public class Scrap : AnimatedGameObject
         Player player = GameWorld.Find("player") as Player;
         if (CollidesWith(player))
         {
-            player.bar.size += 5000;
             switch (scrapType)
             {
-                case 1:
+                case 0:
                     Player.ironCount += 10;
                     break;
-                case 2:
-                    player.updateFuel(5000);
-                    break;
-/*                case 2:
+                case 1:
                     Player.carbonCount += 10;
-                    break;*/
-/*                default:
-                    player.updateFuel(5000);
-                    break;*/
+                    break;
                 default:
-                    Player.carbonCount += 10;
+                    player.updateFuel(5000);
                     break;
+
             }
 
             health = -1;
