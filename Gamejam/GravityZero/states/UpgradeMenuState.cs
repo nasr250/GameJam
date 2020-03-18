@@ -14,9 +14,9 @@ class UpgradeMenustate : GameObjectList
     {
 
         //item prices
-        price1 = 50;
-        price2 = 50;
-        price3 = 50;
+        price1 = 20;
+        price2 = 20;
+        price3 = 40;
         //item level
         itemLevel1 = 1;
         itemLevel2 = 1;
@@ -194,8 +194,8 @@ class UpgradeMenustate : GameObjectList
         itemLevel1 = 1;
         itemLevel2 = 1;
         itemLevel3 = 1;
-        price1 = 50;
-        price2 = 50;
-        price3 = 50;
+        price1 = 20;
+        price2 = 20;
+        price3 = 40;
     }
 }
