@@ -13,7 +13,7 @@ class Bullet : Projectile
     protected double curve;
     protected int time;
     Rectangle screen;
-    float despawnTimer = 10f;
+    float despawnTimer = 5f;
 
     public Bullet(Vector2 startpos, double dir = 1, float spd = 1, double curv = 0, int damage = 1)
     {
@@ -61,7 +61,7 @@ class Bullet : Projectile
         Player player = GameWorld.Find("player") as Player;
         if (CollidesWith(player))
         {
-            Player.Health--;
+            Player.Health -= 30;
             health--;
         }
     }

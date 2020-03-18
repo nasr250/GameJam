@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 public class Planet : SpriteGameObject
 {
     public const int G = 10000;
-    public static int mass = 70;
+    public static int mass = 50;
     Vector2 middle;
     public Planet(Vector2 pos, string sprite = "Sprites/planet_1") : base(sprite)
     {
@@ -55,7 +55,6 @@ public class Planet : SpriteGameObject
                 Vector2 unit = uv / Vector2.Distance(middle, bullet.Position);
                 bullet.Velocity += -G * mass * unit / Vector2.DistanceSquared(middle, bullet.Position);
             }
-
         }
 
         GameObjectList friendlyBullets = GameWorld.Find("friendlyBullets") as GameObjectList;

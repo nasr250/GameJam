@@ -7,11 +7,11 @@ partial class Level : GameObjectList
 {
     int safezone = 800;
     int planetsDensity = 1000;
-    int enemyDensity = 10;
-    int scrapDensity = 100;
+    int enemyDensity = 15;
+    int scrapDensity = 120;
     int minPlanetDistance = 50;
     List<Vector2> planetlocations;
-    public int worldborder = 10000;
+    public int worldborder = 9000;
     int attempts;
     int planetcount;
 
@@ -32,8 +32,7 @@ partial class Level : GameObjectList
     {
         for (int x = 1; x < scrapDensity; x++)
         {
-            Vector2 randomscrappos = RandomPos();
-            Add(new Scrap(randomscrappos));
+            Add(new Scrap(RandomPos()));
         }
     }
 
@@ -41,10 +40,15 @@ partial class Level : GameObjectList
     {
         for (int x = 1; x < enemyDensity; x++)
         {
-            Vector2 randomenemypos = RandomPos();
-            Add(new MovingEnemy(randomenemypos));
-            Add(new RammingEnemy(randomenemypos));
-            Add(new SpinningEnemy(randomenemypos));
+            int random = GameEnvironment.Random.Next(0, 2);
+            if (random == 1)
+            {
+                Add(new MovingEnemy(RandomPos()));
+            }
+            else if (random == 2)
+            {
+                Add(new RammingEnemy(RandomPos()));
+            }
         }
     }
 

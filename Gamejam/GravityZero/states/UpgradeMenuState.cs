@@ -155,7 +155,7 @@ class UpgradeMenustate : GameObjectList
             Player.ironCount -= price1;
             price1 += price1;
             itemLevel1++;
-            Player.shootCooldown -= 5;
+            Player.shootCooldown -= 10;
             Player.reducedFuelCost += 50;
         }
         //Health: By upgrading health you will be able to take more damage before you die.
@@ -165,7 +165,7 @@ class UpgradeMenustate : GameObjectList
             Player.ironCount -= price2;
             price2 += price2;
             itemLevel2++;
-            Player.Health += 5;
+            Player.Health += 10;
         }
         //Speed: By upgrading speed you will be able to move faster.
         if (buyButton3.Pressed && buyButton3.hoover == true && Player.carbonCount >= price3)
