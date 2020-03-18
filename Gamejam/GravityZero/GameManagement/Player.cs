@@ -39,8 +39,6 @@ public class Player : AnimatedGameObject
         isDead = false;
         hasExploded = false;
         isDead2 = true;
-        ironCount = 1000000;
-        carbonCount = 100000;
     }
 
     public override void Update(GameTime gameTime)
