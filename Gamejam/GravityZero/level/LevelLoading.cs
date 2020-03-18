@@ -6,12 +6,12 @@ using Microsoft.Xna.Framework;
 partial class Level : GameObjectList
 {
     int safezone = 800;
-    int planetsDensity = 1000;
-    int enemyDensity = 15;
-    int scrapDensity = 120;
+    int planetsDensity = 700;
+    int enemyDensity = 13;
+    int scrapDensity = 180;
     int minPlanetDistance = 50;
     List<Vector2> planetlocations;
-    public int worldborder = 9000;
+    public int worldborder = 8000;
     int attempts;
     int planetcount;
 
@@ -74,7 +74,7 @@ partial class Level : GameObjectList
             }
             if (!overlap)
             {
-                if (GameEnvironment.Random.Next(0, 3) == 1)
+                if (GameEnvironment.Random.Next(0, 6) == 1)
                 {
                     planetlocations.Add(randomplanetpos);
                     Add(new BlackHole(randomplanetpos));
