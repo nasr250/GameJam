@@ -12,9 +12,9 @@ public class MovingEnemy : Enemy
     Vector2 movement = Vector2.Zero;
 
 
-    public MovingEnemy(Vector2 EndPos):base("Sprites/enemy1@2x1")
+    public MovingEnemy(Vector2 StartPos):base("Sprites/enemy1@2x1")
     {
-        endPos = EndPos;
+        position = StartPos;
         speed = new Vector2(-50, -100);
     }
 
@@ -29,7 +29,7 @@ public class MovingEnemy : Enemy
         float distance = direction.Length();
         direction.Normalize(); //calculates the normalized
         movement = speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
-        if (distance >= 400)
+        if (distance >= 400 && distance <= 3000)
         {
             movement += 5 * direction; //makes the movement of the enemy more towards the direction between the enemy and the endpoint
             position += movement;
