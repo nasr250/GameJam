@@ -13,7 +13,7 @@ class RammingEnemy : Enemy
     public RammingEnemy(Vector2 StartPos)
 	{
         Velocity /= 2;
-        health = 1;
+        health = 2;
         position = StartPos;
 	}
 
@@ -33,7 +33,7 @@ class RammingEnemy : Enemy
         if (CollidesWith(player))
         {
             Player.Health -= 10;
-            health--;
+            health -= 2;
         }
         GameObjectList friendlyBullets = GameWorld.Find("friendlyBullets") as GameObjectList;
         for (int i = friendlyBullets.children.Count - 1; i >= 0; i--)
