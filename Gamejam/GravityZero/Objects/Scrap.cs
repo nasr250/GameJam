@@ -41,4 +41,8 @@ public class Scrap : AnimatedGameObject
             health = -1;
         }
     }
+    public override void Reset()
+    {
+        health = -1;
+    }
 }

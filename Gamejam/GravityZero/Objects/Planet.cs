@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 public class Planet : SpriteGameObject
 {
     public const int G = 10000;
-    public static int mass = 70;
+    public static int mass = 50;
     Vector2 middle;
     public Planet(Vector2 pos, string sprite = "Sprites/planet_1") : base(sprite)
     {

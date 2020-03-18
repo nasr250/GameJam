@@ -61,7 +61,7 @@ class Bullet : Projectile
         Player player = GameWorld.Find("player") as Player;
         if (CollidesWith(player))
         {
-            Player.Health -= 50;
+            Player.Health -= 30;
             health--;
         }
     }
