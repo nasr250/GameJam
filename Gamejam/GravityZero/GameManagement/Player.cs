@@ -22,6 +22,8 @@ public class Player : AnimatedGameObject
     public int mass = 10;
     GameObjectList friendlyBullets;
     Vector2 ShootPosition;
+    Vector2 PrevVelocity;
+    Vector2 A;
     public Shotbar bar;
     int counter;
     int maxspeed = 500;
@@ -43,7 +45,6 @@ public class Player : AnimatedGameObject
 
     public override void Update(GameTime gameTime)
     {
-        
         if (Velocity.X > maxspeed)
         {
             velocity.X = maxspeed;
@@ -60,21 +61,21 @@ public class Player : AnimatedGameObject
         {
             velocity.Y = -maxspeed;
         }
-        if (position.X > 10000)
+        if (position.X > 9000)
         {
-            position.X = 10000;
+            position.X = -9000;
         }
-        else if (position.X < -10000)
+        else if (position.X < -9000)
         {
-            position.X = -10000;
+            position.X = 9000;
         }
-        if (position.Y > 10000)
+        if (position.Y > 9000)
         {
-            position.Y = 10000;
+            position.Y = -9000;
         }
-        else if (position.Y < -10000)
+        else if (position.Y < -9000)
         {
-            position.Y = -10000;
+            position.Y = 9000;
         }
         base.Update(gameTime);
         //Upgrades the ship when all the requirements are reached in the upgrade menu.
@@ -157,7 +158,7 @@ public class Player : AnimatedGameObject
         string tempstring = z.ToString("0.0000");
         sprite.spriteRotation = float.Parse(tempstring);
 
-        if (inputHelper.IsKeyDown(Keys.Space))
+        if (inputHelper.IsKeyDown(Keys.Space) && bar.size >= 0)
         {
             //reduce fuel:
             bar.size -= 20;
@@ -198,12 +199,12 @@ public class Player : AnimatedGameObject
                 bar.size -= (500 - reducedFuelCost);
         }
 
-        if (inputHelper.KeyPressed(Keys.U)) // debug: temp power up switch
+        /*if (inputHelper.KeyPressed(Keys.U)) // debug: temp power up switch
         {
             if (powerUpState <= 3)
                 powerUpState++;
             else powerUpState = 0;
-        }
+        }*/
 
     }
 

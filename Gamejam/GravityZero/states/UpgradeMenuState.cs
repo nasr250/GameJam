@@ -167,7 +167,7 @@ class UpgradeMenustate : GameObjectList
             itemLevel2++;
             Player.Health += 10;
         }
-        //Speed: By upgrading speed you will be able to move faster.
+        //Booster: By upgrading your booster you will be able to move faster.
         if (buyButton3.Pressed && buyButton3.hoover == true && Player.carbonCount >= price3)
         {
             Player.isDead = false;

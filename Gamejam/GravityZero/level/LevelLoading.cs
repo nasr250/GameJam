@@ -9,6 +9,7 @@ partial class Level : GameObjectList
     int planetsDensity = 700;
     int enemyDensity = 13;
     int scrapDensity = 180;
+    int starDensity = 0;
     int minPlanetDistance = 80;
     List<Vector2> planetlocations;
     public int worldborder = 8000;
@@ -20,6 +21,7 @@ partial class Level : GameObjectList
         LoadScraps();
         LoadPlanets();
         LoadEnemies();
+        LoadStars();
     }
 
     Vector2 RandomPos()
@@ -35,6 +37,27 @@ partial class Level : GameObjectList
             Add(new Scrap(RandomPos()));
         }
     }
+    void LoadStars()
+    {
+        string type = "Backgrounds/star1";
+        int randomtexture = (GameEnvironment.Random.Next(0, 3));
+        if (randomtexture == 1)
+        {
+            type = "Backgrounds/star1";
+        }
+        else if (randomtexture == 2)
+        {
+            type = "Backgrounds/star2";
+        }
+        else if (randomtexture == 3)
+        {
+            type = "Backgrounds/star3";
+        }
+        for (int x = 1; x < starDensity; x++)
+        {
+            Add(new Star(RandomPos(), type));
+        }
+    }
 
     void LoadEnemies()
     {
@@ -45,7 +68,7 @@ partial class Level : GameObjectList
             {
                 Add(new MovingEnemy(RandomPos()));
             }
-            else if (random == 2)
+            else
             {
                 Add(new RammingEnemy(RandomPos()));
             }
