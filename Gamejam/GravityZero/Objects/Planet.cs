@@ -10,11 +10,11 @@ public class Planet : SpriteGameObject
 {
     public const int G = 10000;
     public static int mass = 70;
+    Vector2 middle;
     public Planet(Vector2 pos, string sprite = "Sprites/planet_1") : base(sprite)
     {
         position = pos;
-        position.X += Width;
-        position.Y += Height;
+        middle = new Vector2(position.X + Width / 2, position.Y + Height / 2);
         health = 2;
     }
 
@@ -31,9 +31,9 @@ public class Planet : SpriteGameObject
             }
             else
             {
-                Vector2 uv = player.Position - position;
-                Vector2 unit = uv / Vector2.Distance(position, player.Position);
-                player.Velocity += -G * mass * unit / Vector2.DistanceSquared(position, player.Position);
+                Vector2 uv = player.Position - middle;
+                Vector2 unit = uv / Vector2.Distance(middle, player.Position);
+                player.Velocity += -G * mass * unit / Vector2.DistanceSquared(middle, player.Position);
             }
         }
         GameObjectList bullets = GameWorld.Find("bullets") as GameObjectList;
@@ -51,9 +51,9 @@ public class Planet : SpriteGameObject
             }
             else
             {
-                Vector2 uv = bullet.Position - position;
-                Vector2 unit = uv / Vector2.Distance(position, bullet.Position);
-                bullet.Velocity += -G * mass * unit / Vector2.DistanceSquared(position, bullet.Position);
+                Vector2 uv = bullet.Position - middle;
+                Vector2 unit = uv / Vector2.Distance(middle, bullet.Position);
+                bullet.Velocity += -G * mass * unit / Vector2.DistanceSquared(middle, bullet.Position);
             }
 
         }
@@ -74,9 +74,9 @@ public class Planet : SpriteGameObject
             }
             else
             {
-                Vector2 uv = friendlyBullet.Position - position;
-                Vector2 unit = uv / Vector2.Distance(position, friendlyBullet.Position);
-                friendlyBullet.Velocity += -G * mass * unit / Vector2.DistanceSquared(position, friendlyBullet.Position);
+                Vector2 uv = friendlyBullet.Position - middle;
+                Vector2 unit = uv / Vector2.Distance(middle, friendlyBullet.Position);
+                friendlyBullet.Velocity += -G * mass * unit / Vector2.DistanceSquared(middle, friendlyBullet.Position);
             }
 
         }
