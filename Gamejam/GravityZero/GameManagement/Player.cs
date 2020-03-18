@@ -24,6 +24,7 @@ public class Player : AnimatedGameObject
     Vector2 ShootPosition;
     Shotbar bar;
     int counter;
+    int maxspeed = 800;
 
     public Player(int layer = 0, string id = "") : base(layer, id)
     {
@@ -43,6 +44,38 @@ public class Player : AnimatedGameObject
 
     public override void Update(GameTime gameTime)
     {
+        if (Velocity.X > maxspeed)
+        {
+            velocity.X = maxspeed;
+        }
+        if (Velocity.Y > maxspeed)
+        {
+            velocity.Y = maxspeed;
+        }
+        if (Velocity.X < -maxspeed)
+        {
+            velocity.X = -maxspeed;
+        }
+        if (Velocity.Y < -maxspeed)
+        {
+            velocity.Y = -maxspeed;
+        }
+        if (position.X > 10000)
+        {
+            position.X = 10000;
+        }
+        else if (position.X < -10000)
+        {
+            position.X = -10000;
+        }
+        if (position.Y > 10000)
+        {
+            position.Y = 10000;
+        }
+        else if (position.Y < -10000)
+        {
+            position.Y = -10000;
+        }
         base.Update(gameTime);
         //Upgrades the ship when all the requirements are reached in the upgrade menu.
         if (upgrade1)
@@ -135,17 +168,9 @@ public class Player : AnimatedGameObject
             string temp2y = y2.ToString("0.0000");
 
             direction = new Vector2(float.Parse(temp2x), float.Parse(temp2y));
-            velocity.X = Velocity.X + direction.X * 2 * speed;
-            velocity.Y = Velocity.Y + direction.Y * 2 * speed;
-
-            if (Velocity.X > 500)
-            {
-                velocity.X = 500;
-            }
-            if (Velocity.Y > 500)
-            {
-                velocity.Y = 500;
-            }
+            velocity.X = Velocity.X + direction.X * 22 * speed;
+            velocity.Y = Velocity.Y + direction.Y * 22 * speed;
+            Console.WriteLine(direction + " " + speed + " " + Velocity);
         }
 
         if (inputHelper.MouseLeftButtonPressed())
@@ -277,7 +302,8 @@ public class Player : AnimatedGameObject
         ironCount = 0;
         carbonCount = 0;
         powerUpState = 0;
-        speed = 10f;
+        velocity = Vector2.Zero;
+        speed = 1f;
         Position = new Vector2(0, 0);
         Health = 190;
         bar.Reset();

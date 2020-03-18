@@ -35,15 +35,15 @@ public class SpriteGameObject : GameObject
                 //background
                 if (layer == -10)
                 {
-                    sprite.Draw(spriteBatch, this.GlobalPosition + camera.Position / 64, origin);
+                    sprite.Draw(spriteBatch, this.GlobalPosition + camera.Position / 60, origin);
                 }
                 else if (layer == -9)
                 {
-                    sprite.Draw(spriteBatch, this.GlobalPosition + camera.Position / 55, origin);
+                    sprite.Draw(spriteBatch, this.GlobalPosition + camera.Position / 50, origin);
                 }
                 else if (layer == -8)
                 {
-                    sprite.Draw(spriteBatch, this.GlobalPosition + camera.Position / 40, origin);
+                    sprite.Draw(spriteBatch, this.GlobalPosition + camera.Position / 30, origin);
                 }
                 else if (layer == 100)
                 {

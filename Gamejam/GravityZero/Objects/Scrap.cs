@@ -9,9 +9,10 @@ public class Scrap : AnimatedGameObject
 
     //Tijdelijke aanpassingen om te checken of de upgrademenu werkt met carbon.
 
-    public Scrap()
+    public Scrap(Vector2 pos)
     {
         Random random = new Random();
+        position = pos;
         //List<string> materials = new List<string> { "iron", "carbon", "fuel" };
         //scrapType = random.Next(materials.Count);
         //string path = "Sprites/" + materials[scrapType] + "@1x1";

@@ -27,7 +27,7 @@ public class Planet : SpriteGameObject
                 Player.Health -= 10;
                 player.Velocity /= 2;
             }
-            if (!CollidesWith(player))
+            else
             {
                 Vector2 uv = player.Position - position;
                 Vector2 unit = uv / Vector2.Distance(position, player.Position);
@@ -47,7 +47,7 @@ public class Planet : SpriteGameObject
                     kills.health++;
                 }*/
             }
-            if (!CollidesWith(bullet))
+            else
             {
                 Vector2 uv = bullet.Position - position;
                 Vector2 unit = uv / Vector2.Distance(position, bullet.Position);
@@ -70,7 +70,7 @@ public class Planet : SpriteGameObject
                     kills.health++;
                 }*/
             }
-            if (!CollidesWith(friendlyBullet))
+            else
             {
                 Vector2 uv = friendlyBullet.Position - position;
                 Vector2 unit = uv / Vector2.Distance(position, friendlyBullet.Position);

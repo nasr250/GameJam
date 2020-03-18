@@ -5,28 +5,60 @@ using Microsoft.Xna.Framework;
 
 partial class Level : GameObjectList
 {
-    int safezone = 200;
+    int safezone = 800;
     int planetsDensity = 1000;
-    int minPlanetDistance = 40;
+    int enemyDensity = 15;
+    int scrapDensity = 100;
+    int minPlanetDistance = 50;
     List<Vector2> planetlocations;
-    public int worldborder = 15000;
+    public int worldborder = 10000;
     int attempts;
     int planetcount;
 
     public void LoadLevel(int levelIndex)// here all entities used in a level can be loaded
     {
+        LoadScraps();
+        LoadPlanets();
+        LoadEnemies();
+    }
+
+    Vector2 RandomPos()
+    {
+        return new Vector2((GameEnvironment.Random.Next(0, 2) * 2 - 1) * GameEnvironment.Random.Next(0, worldborder),
+                           (GameEnvironment.Random.Next(0, 2) * 2 - 1) * GameEnvironment.Random.Next(0, worldborder));
+    }
+
+    void LoadScraps()
+    {
+        for (int x = 1; x < scrapDensity; x++)
+        {
+            Vector2 randomscrappos = RandomPos();
+            Add(new Scrap(randomscrappos));
+        }
+    }
+
+    void LoadEnemies()
+    {
+        for (int x = 1; x < enemyDensity; x++)
+        {
+            Vector2 randomenemypos = RandomPos();
+            Add(new MovingEnemy(randomenemypos)); 
+        }
+    }
+
+    void LoadPlanets()
+    {
         planetlocations = new List<Vector2>();
-        attempts = 0;        
+        attempts = 0;
         for (int x = 1; x < planetsDensity; x++)
         {
             //attempts++;
             //Console.WriteLine(attempts);
             bool overlap = false;
-            Vector2 randomplanetpos = new Vector2((GameEnvironment.Random.Next(0, 2) * 2 - 1) * GameEnvironment.Random.Next(0, worldborder),
-                                            (GameEnvironment.Random.Next(0, 2) * 2 - 1) * GameEnvironment.Random.Next(0, worldborder));
-            foreach(Vector2 planetpos in planetlocations)
+            Vector2 randomplanetpos = RandomPos();
+            foreach (Vector2 planetpos in planetlocations)
             {
-                if(Math.Abs(randomplanetpos.X - planetpos.X) < minPlanetDistance || Math.Abs(randomplanetpos.Y - planetpos.Y) < minPlanetDistance ||
+                if (Math.Abs(randomplanetpos.X - planetpos.X) < minPlanetDistance || Math.Abs(randomplanetpos.Y - planetpos.Y) < minPlanetDistance ||
                     randomplanetpos.X > -safezone && randomplanetpos.X < safezone || randomplanetpos.Y > -safezone && randomplanetpos.Y < safezone) //planet overlaps other planet?
                 {
                     //return to for loop
@@ -68,27 +100,7 @@ partial class Level : GameObjectList
                 }
                 planetcount++;
             }
-            
-
-
-            /*
-
-            Vector2 planetpos = new Vector2((GameEnvironment.Random.Next(0, 2) * 2 - 1) * GameEnvironment.Random.Next(0, worldborder),
-                                            (GameEnvironment.Random.Next(0, 2) * 2 - 1) * GameEnvironment.Random.Next(0, worldborder));
-            if(planetpos.X > -safezone && planetpos.X < safezone && planetpos.Y > -safezone && planetpos.Y < safezone)
-            {
-                x--;
-            }
-            else
-            {
-                Add(new Planet(planetpos));
-            }*/
         }
         Console.WriteLine("created planets: " + planetcount);
-        Enemy enemy1 = new MovingEnemy(new Vector2(1000, 1000));
-        enemy1.Position = new Vector2(500, 1000);
-        Add(enemy1);
     }
-
-
 }
