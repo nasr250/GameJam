@@ -199,12 +199,12 @@ public class Player : AnimatedGameObject
                 bar.size -= (500 - reducedFuelCost);
         }
 
-        if (inputHelper.KeyPressed(Keys.U)) // debug: temp power up switch
+        /*if (inputHelper.KeyPressed(Keys.U)) // debug: temp power up switch
         {
             if (powerUpState <= 3)
                 powerUpState++;
             else powerUpState = 0;
-        }
+        }*/
 
     }
 
