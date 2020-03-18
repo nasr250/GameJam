@@ -38,7 +38,7 @@ public abstract class Enemy : AnimatedGameObject
         {
             if (CollidesWith(player))
             {
-                Player.Health--;
+                Player.Health -= 5;
                 health--;
             }
             shootDirection = player.Position - position;
@@ -70,7 +70,7 @@ public abstract class Enemy : AnimatedGameObject
     public virtual void Shoot()
     {
         GameObjectList bullets = GameWorld.Find("bullets") as GameObjectList;
-        Bullet bullet = new Bullet(position, spd: 3, curv: 2, dir: (int)(Math.Atan2(shootDirection.Y, shootDirection.X) * 180/Math.PI));
+        Bullet bullet = new Bullet(position, spd: 7, curv: 2, dir: (int)(Math.Atan2(shootDirection.Y, shootDirection.X) * 180/Math.PI));
         bullets.Add(bullet);
     }
 

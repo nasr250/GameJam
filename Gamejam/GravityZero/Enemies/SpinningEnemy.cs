@@ -10,9 +10,10 @@ public class SpinningEnemy : Enemy
 {
     float shootAngle = 0;
 
-    public SpinningEnemy()
+    public SpinningEnemy(Vector2 StartPos)
     {
         velocity.X = 120;
+        position = StartPos;
     }
 
     public override void Update(GameTime gameTime)
