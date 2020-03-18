@@ -6,8 +6,8 @@ using Microsoft.Xna.Framework;
 partial class Level : GameObjectList
 {
     int safezone = 800;
-    int planetsDensity = 1000;
-    int enemyDensity = 15;
+    int planetsDensity = 800;
+    int enemyDensity = 25;
     int scrapDensity = 100;
     int minPlanetDistance = 50;
     List<Vector2> planetlocations;
