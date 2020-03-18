@@ -32,8 +32,7 @@ partial class Level : GameObjectList
     {
         for (int x = 1; x < scrapDensity; x++)
         {
-            Vector2 randomscrappos = RandomPos();
-            Add(new Scrap(randomscrappos));
+            Add(new Scrap(RandomPos()));
         }
     }
 
@@ -41,8 +40,7 @@ partial class Level : GameObjectList
     {
         for (int x = 1; x < enemyDensity; x++)
         {
-            Vector2 randomenemypos = RandomPos();
-            Add(new MovingEnemy(randomenemypos)); 
+            Add(new MovingEnemy(RandomPos())); 
         }
     }
 
