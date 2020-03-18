@@ -61,21 +61,21 @@ public class Player : AnimatedGameObject
         {
             velocity.Y = -maxspeed;
         }
-        if (position.X > 10000)
+        if (position.X > 9000)
         {
-            position.X = 10000;
+            position.X = -9000;
         }
-        else if (position.X < -10000)
+        else if (position.X < -9000)
         {
-            position.X = -10000;
+            position.X = 9000;
         }
-        if (position.Y > 10000)
+        if (position.Y > 9000)
         {
-            position.Y = 10000;
+            position.Y = -9000;
         }
-        else if (position.Y < -10000)
+        else if (position.Y < -9000)
         {
-            position.Y = -10000;
+            position.Y = 9000;
         }
         base.Update(gameTime);
         //Upgrades the ship when all the requirements are reached in the upgrade menu.
