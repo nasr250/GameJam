@@ -9,7 +9,7 @@ partial class Level : GameObjectList
     int planetsDensity = 700;
     int enemyDensity = 13;
     int scrapDensity = 180;
-    int minPlanetDistance = 50;
+    int minPlanetDistance = 80;
     List<Vector2> planetlocations;
     public int worldborder = 8000;
     int attempts;
