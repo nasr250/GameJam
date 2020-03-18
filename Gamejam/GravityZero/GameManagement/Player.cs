@@ -44,6 +44,7 @@ public class Player : AnimatedGameObject
 
     public override void Update(GameTime gameTime)
     {
+        /*
         if (Velocity.X > maxspeed)
         {
             velocity.X = maxspeed;
@@ -59,7 +60,7 @@ public class Player : AnimatedGameObject
         if (Velocity.Y < -maxspeed)
         {
             velocity.Y = -maxspeed;
-        }
+        }*/
         if (position.X > 10000)
         {
             position.X = 10000;
@@ -160,7 +161,7 @@ public class Player : AnimatedGameObject
         if (inputHelper.IsKeyDown(Keys.Space))
         {
             //reduce fuel:
-            bar.size -= 10;
+            bar.size -= 20;
             //double angle = 0.5 * Math.PI;
             double angle = Math.Atan2(y, x);
             double x2 = Math.Cos(angle);
