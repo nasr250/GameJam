@@ -6,12 +6,12 @@ using Microsoft.Xna.Framework;
 partial class Level : GameObjectList
 {
     int safezone = 800;
-    int planetsDensity = 800;
-    int enemyDensity = 25;
-    int scrapDensity = 100;
+    int planetsDensity = 1000;
+    int enemyDensity = 15;
+    int scrapDensity = 120;
     int minPlanetDistance = 50;
     List<Vector2> planetlocations;
-    public int worldborder = 10000;
+    public int worldborder = 9000;
     int attempts;
     int planetcount;
 
@@ -40,7 +40,15 @@ partial class Level : GameObjectList
     {
         for (int x = 1; x < enemyDensity; x++)
         {
-            Add(new MovingEnemy(RandomPos())); 
+            int random = GameEnvironment.Random.Next(0, 2);
+            if (random == 1)
+            {
+                Add(new MovingEnemy(RandomPos()));
+            }
+            else if (random == 2)
+            {
+                Add(new RammingEnemy(RandomPos()));
+            }
         }
     }
 

@@ -24,7 +24,7 @@ public class Player : AnimatedGameObject
     Vector2 ShootPosition;
     public Shotbar bar;
     int counter;
-    int maxspeed = 800;
+    int maxspeed = 500;
 
     public Player(int layer = 0, string id = "") : base(layer, id)
     {
@@ -169,8 +169,8 @@ public class Player : AnimatedGameObject
             string temp2y = y2.ToString("0.0000");
 
             direction = new Vector2(float.Parse(temp2x), float.Parse(temp2y));
-            velocity.X = Velocity.X + direction.X * 22 * speed;
-            velocity.Y = Velocity.Y + direction.Y * 22 * speed;
+            velocity.X = Velocity.X + direction.X * 18 * speed;
+            velocity.Y = Velocity.Y + direction.Y * 18 * speed;
         }
 
         if (inputHelper.MouseLeftButtonPressed())

@@ -55,7 +55,6 @@ public class Planet : SpriteGameObject
                 Vector2 unit = uv / Vector2.Distance(middle, bullet.Position);
                 bullet.Velocity += -G * mass * unit / Vector2.DistanceSquared(middle, bullet.Position);
             }
-
         }
 
         GameObjectList friendlyBullets = GameWorld.Find("friendlyBullets") as GameObjectList;

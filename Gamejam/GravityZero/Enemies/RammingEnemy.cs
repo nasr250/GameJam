@@ -10,8 +10,9 @@ class RammingEnemy : Enemy
     Vector2 speed, direction;
     Vector2 movement = Vector2.Zero;
 
-    public RammingEnemy()
-	{
+    public RammingEnemy(Vector2 StartPos)
+    {
+        position = StartPos;
         Velocity /= 2;
         health = 1;
 
