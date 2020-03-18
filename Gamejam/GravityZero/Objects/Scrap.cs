@@ -11,7 +11,8 @@ public class Scrap : AnimatedGameObject
     {
         position = pos;
         List<string> materials = new List<string> { "iron", "carbon", "fuel" };
-        scrapType = GameEnvironment.Random.Next(materials.Count);
+        scrapType = GameEnvironment.Random.Next(materials.Count + 2);
+        if (scrapType > 2) { scrapType = 2; }
         string path = "Sprites/" + materials[scrapType] + "@1x1";
         LoadAnimation(path, "scrap", true);
         PlayAnimation("scrap");
