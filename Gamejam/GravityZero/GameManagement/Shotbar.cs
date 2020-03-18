@@ -12,6 +12,7 @@ using Microsoft.Xna.Framework.Content;
 public class Shotbar : SpriteGameObject
 {
     public double size = 24000;
+    int sizeLimit = 30000;
     InputHelper inputHelper = new InputHelper();
     GameObjectList friendlyBullets;
 
@@ -22,9 +23,12 @@ public class Shotbar : SpriteGameObject
 
     public override void Update(GameTime gameTime)
     {
-        if (size != 0)
-            size -= gameTime.ElapsedGameTime.TotalMilliseconds;
-
+       // if (size != 0)
+         //   size -= gameTime.ElapsedGameTime.TotalMilliseconds;
+        if (size > sizeLimit)
+        {
+            size = sizeLimit;
+        }
         if (inputHelper.MouseLeftButtonPressed() && size >= 1)
         {
             friendlyBullets = GameWorld.Find("friendlyBullets") as GameObjectList;

@@ -22,7 +22,7 @@ public class Player : AnimatedGameObject
     public int mass = 10;
     GameObjectList friendlyBullets;
     Vector2 ShootPosition;
-    Shotbar bar;
+    public Shotbar bar;
     int counter;
     int maxspeed = 800;
 
@@ -159,7 +159,8 @@ public class Player : AnimatedGameObject
 
         if (inputHelper.IsKeyDown(Keys.Space))
         {
-            //Velocity = new Vector2((Velocity.X + (float)x + speed) / 1.8f, (Velocity.Y + (float)y + speed) / 1.8f);
+            //reduce fuel:
+            bar.size -= 10;
             //double angle = 0.5 * Math.PI;
             double angle = Math.Atan2(y, x);
             double x2 = Math.Cos(angle);
@@ -170,7 +171,6 @@ public class Player : AnimatedGameObject
             direction = new Vector2(float.Parse(temp2x), float.Parse(temp2y));
             velocity.X = Velocity.X + direction.X * 22 * speed;
             velocity.Y = Velocity.Y + direction.Y * 22 * speed;
-            Console.WriteLine(direction + " " + speed + " " + Velocity);
         }
 
         if (inputHelper.MouseLeftButtonPressed())

@@ -27,6 +27,7 @@ public class Scrap : AnimatedGameObject
         Player player = GameWorld.Find("player") as Player;
         if (CollidesWith(player))
         {
+            player.bar.size += 5000;
             switch (scrapType)
             {
                 case 1:
