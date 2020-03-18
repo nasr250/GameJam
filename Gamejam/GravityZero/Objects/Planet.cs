@@ -12,7 +12,9 @@ public class Planet : SpriteGameObject
     public static int mass = 70;
     public Planet(Vector2 pos, string sprite = "Sprites/planet_1") : base(sprite)
     {
-        position = pos;        
+        position = pos;
+        position.X += Sprite.Width / 2;
+        position.Y += Sprite.Height / 2;
         health = 2;
     }
 

@@ -101,7 +101,6 @@
     <Content Include="Content\Audio\telepathy.mp3" />
     <Content Include="Content\Backgrounds\spr_title.jpg" />
     <Content Include="Content\Overlays\spr_gameover.png" />
-    <Content Include="Content\Sprites\MovingEnemy.png" />
     <Content Include="Content\Sprites\spr_button_play.png" />
     <Content Include="Content\Sprites\spr_button_quit.png" />
     <Content Include="Icon.ico" />
