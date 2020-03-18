@@ -38,7 +38,7 @@ public abstract class Enemy : AnimatedGameObject
         {
             if (CollidesWith(player))
             {
-                Player.Health--;
+                Player.Health -= 5;
                 health--;
             }
             shootDirection = player.Position - position;

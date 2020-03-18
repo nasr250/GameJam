@@ -14,11 +14,11 @@ public class PausingEnemy : Enemy
     double PauseTime;
     bool pause = false;
 
-    public PausingEnemy(int pauseTime = 10) //pausetime is the time in seconds that a pause would last, for tougher enemies a larger time could be used
+    public PausingEnemy(Vector2 StartPos, int pauseTime = 10) //pausetime is the time in seconds that a pause would last, for tougher enemies a larger time could be used
     {
         PauseTime = pauseTime;
         velocity.X = 120;
-        position = new Vector2(0, 1080);
+        position = StartPos;
         direction = endPos - position; //calculates the vector the enemy needs to travel
         float distance = direction.Length();
         direction.Normalize(); //calculates the normalized
