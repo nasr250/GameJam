@@ -40,11 +40,12 @@ public class Player : AnimatedGameObject
         hasExploded = false;
         isDead2 = true;
         ironCount = 1000000;
+        carbonCount = 100000;
     }
 
     public override void Update(GameTime gameTime)
     {
-        /*
+        
         if (Velocity.X > maxspeed)
         {
             velocity.X = maxspeed;
@@ -60,7 +61,7 @@ public class Player : AnimatedGameObject
         if (Velocity.Y < -maxspeed)
         {
             velocity.Y = -maxspeed;
-        }*/
+        }
         if (position.X > 10000)
         {
             position.X = 10000;
@@ -152,8 +153,8 @@ public class Player : AnimatedGameObject
     {
         inputHelper.Update(); //commented lines are for debugging purposes
         Camera camera = GameWorld.Find("camera") as Camera;
-        double x = inputHelper.MousePosition.X - GameEnvironment.Screen.X / 3 + Width / 2;
-        double y = inputHelper.MousePosition.Y - GameEnvironment.Screen.Y / 3 + Height / 2;
+        double x = inputHelper.MousePosition.X - GameEnvironment.Screen.X / 2 + Width / 2;
+        double y = inputHelper.MousePosition.Y - GameEnvironment.Screen.Y / 2 + Height / 2;
         double z = Math.Atan2(y, x) + 0.5 * Math.PI;
         string tempstring = z.ToString("0.0000");
         sprite.spriteRotation = float.Parse(tempstring);
@@ -238,17 +239,22 @@ public class Player : AnimatedGameObject
         {
             double dir = sprite.spriteRotation - 0.5 * Math.PI;
             dir *= Math.PI / 180;
-            friendlyBullets.Add(new FriendlyBullet(ShootPosition, dir, 5, 2, 0, (int)bar.size / 1000));
+            friendlyBullets.Add(new FriendlyBullet(ShootPosition, dir, GetBulletSpeed(), 2, 0, (int)bar.size / 1000));
             shootTimer = 0;
         }
     }
-
+    float GetBulletSpeed()
+    {
+        double value =  3 + 0.03f * Math.Sqrt(Velocity.X * Velocity.X + Velocity.Y * Velocity.Y);
+        string temp = value.ToString("0.0000");
+        return float.Parse(temp);
+    }
     void Multishot() // Multi-Shot
     {
         for (int w = 0; w < bar.size / 1000; w += 2)
         {
-            friendlyBullets.Add(new FriendlyBullet(ShootPosition, 270 + w, 5, 2, 0, (int)bar.size / 1000));
-            friendlyBullets.Add(new FriendlyBullet(ShootPosition, 270 - w, 5, 2, 0, (int)bar.size / 1000));
+            friendlyBullets.Add(new FriendlyBullet(ShootPosition, 270 + w, GetBulletSpeed(), 2, 0, (int)bar.size / 1000));
+            friendlyBullets.Add(new FriendlyBullet(ShootPosition, 270 - w, GetBulletSpeed(), 2, 0, (int)bar.size / 1000));
         }
     }
 
@@ -256,12 +262,12 @@ public class Player : AnimatedGameObject
     {
         for (int w = 0; w < bar.size / 1000; w++)
         {
-            friendlyBullets.Add(new FriendlyBullet(ShootPosition, 240 + w, 5, 2, 0, (int)bar.size / 1000));
-            friendlyBullets.Add(new FriendlyBullet(ShootPosition, 240 - w, 5, 2, 0, (int)bar.size / 1000));
-            friendlyBullets.Add(new FriendlyBullet(ShootPosition, 270 + w, 5, 2, 0, (int)bar.size / 1000));
-            friendlyBullets.Add(new FriendlyBullet(ShootPosition, 270 - w, 5, 2, 0, (int)bar.size / 1000));
-            friendlyBullets.Add(new FriendlyBullet(ShootPosition, 300 + w, 5, 2, 0, (int)bar.size / 1000));
-            friendlyBullets.Add(new FriendlyBullet(ShootPosition, 300 - w, 5, 2, 0, (int)bar.size / 1000));
+            friendlyBullets.Add(new FriendlyBullet(ShootPosition, 240 + w, GetBulletSpeed(), 2, 0, (int)bar.size / 1000));
+            friendlyBullets.Add(new FriendlyBullet(ShootPosition, 240 - w, GetBulletSpeed(), 2, 0, (int)bar.size / 1000));
+            friendlyBullets.Add(new FriendlyBullet(ShootPosition, 270 + w, GetBulletSpeed(), 2, 0, (int)bar.size / 1000));
+            friendlyBullets.Add(new FriendlyBullet(ShootPosition, 270 - w, GetBulletSpeed(), 2, 0, (int)bar.size / 1000));
+            friendlyBullets.Add(new FriendlyBullet(ShootPosition, 300 + w, GetBulletSpeed(), 2, 0, (int)bar.size / 1000));
+            friendlyBullets.Add(new FriendlyBullet(ShootPosition, 300 - w, GetBulletSpeed(), 2, 0, (int)bar.size / 1000));
         }
     }
 
